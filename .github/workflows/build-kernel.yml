@@ -172,6 +172,17 @@ jobs:
             patch -p1 --forward --fuzz=3 --no-backup-if-mismatch \
               < "$SUSFS_DIR/50_add_susfs_in_kernel-4.19.patch" 2>&1 || true
 
+            # Fix compilation error in fs/notify/fdinfo.c for some 4.19 kernels
+            if [ -f fs/notify/fdinfo.c ]; then
+              echo "Fixing fs/notify/fdinfo.c patch artifacts..."
+              sed -i 's/out_seq_printf:/out_seq_printf:;/g' fs/notify/fdinfo.c
+              if grep -q "inotify_mark_user_mask" fs/notify/fdinfo.c; then
+                if ! grep -q "#define inotify_mark_user_mask" fs/notify/fdinfo.c; then
+                  sed -i '/#include <linux\/exportfs.h>/a #define inotify_mark_user_mask(mark) (mark->mask \& IN_ALL_EVENTS)' fs/notify/fdinfo.c
+                fi
+              fi
+            fi
+
             REJECTS=$(find . -name "*.rej" 2>/dev/null | wc -l)
             if [ "$REJECTS" -gt 0 ]; then
               echo "WARNING: $REJECTS patch hunk(s) were rejected:"

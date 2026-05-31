@@ -59,7 +59,7 @@ jobs:
             git make gcc flex bison bc cpio libssl-dev libncurses-dev \
             libelf-dev python3 python3-pip build-essential curl wget \
             xz-utils zstd g++ gawk liblz4-tool mkbootimg python-is-python3 \
-            android-sdk-libsparse-utils patch 2>/dev/null || true
+            android-sdk-libsparse-utils patch lld 2>/dev/null || true
           sudo apt-get clean
 
       - name: Download kernel source

@@ -1,0 +1,263 @@
+name: Build KernelSU Kernel
+
+on:
+  workflow_dispatch:
+    inputs:
+      defconfig:
+        description: 'Kernel defconfig to use'
+        required: true
+        default: 'a04_defconfig'
+        type: choice
+        options:
+          - a04_defconfig
+          - a04_00_defconfig
+      kernel_version:
+        description: 'Kernel source branch/tag'
+        required: true
+        default: 'latest-B'
+        type: string
+      ksu_version:
+        description: 'KernelSU version (main = latest)'
+        required: true
+        default: 'main'
+        type: string
+
+concurrency:
+  group: kernel-build-${{ github.ref_name }}
+  cancel-in-progress: true
+
+env:
+  KERNEL_DIR: ${{ github.workspace }}/kernel
+  OUTPUT_DIR: ${{ github.workspace }}/output
+  TOOLCHAIN_DIR: ${{ github.workspace }}/toolchains
+  JOBS: $(nproc --all)
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 120
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq \
+            git make gcc flex bison bc cpio libssl-dev libncurses-dev \
+            libelf-dev python3 python3-pip build-essential curl wget \
+            xz-utils zstd g++ gawk liblz4-tool mkbootimg python-is-python3 \
+            android-sdk-libsparse-utils 2>/dev/null || true
+          sudo apt-get clean
+
+      - name: Download kernel source
+        run: |
+          mkdir -p "$KERNEL_DIR"
+          git clone --depth=1 -b "${{ inputs.kernel_version }}" \
+            https://github.com/rsuntk-oss/android_kernel_samsung_a04m.git \
+            "$KERNEL_DIR"
+
+      - name: Download Clang toolchain (clang-r383902)
+        run: |
+          mkdir -p "$TOOLCHAIN_DIR/clang-r383902"
+          curl -L -o clang.tar.gz \
+            "https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/main/clang-r383902.tar.gz" \
+            --connect-timeout 30 --retry 3 || {
+            echo "Google source failed, trying mirror..."
+            curl -L -o clang.tar.gz \
+              "https://github.com/rsuntkOrgs/clang/releases/download/clang-r383902b/clang-r383902b.tar.gz" \
+              --connect-timeout 30 --retry 3
+          }
+          tar -xzf clang.tar.gz -C "$TOOLCHAIN_DIR/clang-r383902"
+          rm -f clang.tar.gz
+
+      - name: Download GCC 4.9 (aarch64-linux-android)
+        run: |
+          mkdir -p "$TOOLCHAIN_DIR/aarch64-linux-android-4.9"
+          curl -L -o gcc.tar.gz \
+            "https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/+archive/refs/heads/main.tar.gz" \
+            --connect-timeout 30 --retry 3 || {
+            echo "Google source failed, trying mirror..."
+            curl -L -o gcc.tar.gz \
+              "https://github.com/rsuntkOrgs/gcc/releases/download/aarch64-linux-android-4.9/aarch64-linux-android-4.9.tar.gz" \
+              --connect-timeout 30 --retry 3
+          }
+          tar -xzf gcc.tar.gz -C "$TOOLCHAIN_DIR/aarch64-linux-android-4.9"
+          rm -f gcc.tar.gz
+
+      - name: Integrate KernelSU
+        run: |
+          cd "$KERNEL_DIR"
+
+          # Replace mtk connectivity module (WiFi fix)
+          if [ -d "drivers/misc/mediatek/connectivity" ]; then
+            echo "Replacing mtk connectivity module..."
+            rm -rf drivers/misc/mediatek/connectivity
+            git clone --depth=1 https://github.com/rsuntkOrgs/mtk_connectivity_module.git \
+              -b staging-4.14 drivers/misc/mediatek/connectivity 2>/dev/null || true
+            rm -rf drivers/misc/mediatek/connectivity/.git
+          fi
+
+          # Apply KernelSU
+          echo "Applying KernelSU (${{ inputs.ksu_version }})..."
+          curl -LSs "https://raw.githubusercontent.com/rsuntk/KernelSU/main/kernel/setup.sh" \
+            | bash -s "${{ inputs.ksu_version }}" 2>&1 || {
+            echo "Auto setup failed, trying manual..."
+            curl -LSs "https://github.com/rsuntk/KernelSU/archive/refs/tags/v1.0.1.tar.gz" -o ksu.tar.gz
+            tar -xzf ksu.tar.gz 2>/dev/null || true
+            if [ -d "KernelSU-1.0.1/kernel" ]; then
+              cp -r KernelSU-1.0.1/kernel/* kernel/ 2>/dev/null || true
+            fi
+            rm -f ksu.tar.gz
+          }
+
+      - name: Configure kernel
+        run: |
+          cd "$KERNEL_DIR"
+
+          export ARCH=arm64
+          export CROSS_COMPILE="$TOOLCHAIN_DIR/aarch64-linux-android-4.9/bin/aarch64-linux-androidkernel-"
+          export CC="$TOOLCHAIN_DIR/clang-r383902/bin/clang"
+          export CLANG_TRIPLE="aarch64-linux-gnu-"
+
+          MAKE_OPTS=(
+            -C "$(pwd)"
+            O="$(pwd)/out"
+            KCFLAGS=-w
+            CONFIG_SECTION_MISMATCH_WARN_ONLY=y
+            CC="${CC}"
+            CLANG_TRIPLE="${CLANG_TRIPLE}"
+            CROSS_COMPILE="${CROSS_COMPILE}"
+            LLVM=1
+            LLVM_IAS=1
+          )
+
+          echo "Using ${{ inputs.defconfig }}..."
+          make "${MAKE_OPTS[@]}" "${{ inputs.defconfig }}"
+
+          # Enable KernelSU
+          scripts/config --file out/.config --enable CONFIG_KSU
+          scripts/config --file out/.config --enable CONFIG_KSU_MANUAL_HOOK
+
+          # Disable Samsung security
+          for opt in \
+            SECURITY_DEFEX PROCA FIVE UH RKP_KDP \
+            SEC_RESTRICT_ROOTING SEC_RESTRICT_SETUID SEC_RESTRICT_FORK \
+            SEC_RESTRICT_ROOTING_LOG KNOX_KAP \
+            TIMA TIMA_LKMAUTH TIMA_LKM_BLOCK TIMA_LKMAUTH_CODE_PROT \
+            INTEGRITY INTEGRITY_SIGNATURE INTEGRITY_ASYMMETRIC_KEYS \
+            INTEGRITY_TRUSTED_KEYRING INTEGRITY_AUDIT DM_VERITY; do
+            scripts/config --file out/.config --disable "CONFIG_${opt}" 2>/dev/null || true
+          done
+
+          # SELinux permissive
+          scripts/config --file out/.config --enable CONFIG_SECURITY_SELINUX_DEVELOP 2>/dev/null || true
+          scripts/config --file out/.config --disable CONFIG_SECURITY_SELINUX_ALWAYS_ENFORCE 2>/dev/null || true
+
+          # Set kernel local version
+          scripts/config --file out/.config --set-str CONFIG_LOCALVERSION "-KernelSU" 2>/dev/null || true
+          scripts/config --file out/.config --enable CONFIG_LOCALVERSION_AUTO 2>/dev/null || true
+
+          make "${MAKE_OPTS[@]}" olddefconfig 2>/dev/null || true
+
+      - name: Build kernel
+        run: |
+          cd "$KERNEL_DIR"
+
+          export ARCH=arm64
+          export CROSS_COMPILE="$TOOLCHAIN_DIR/aarch64-linux-android-4.9/bin/aarch64-linux-androidkernel-"
+          export CC="$TOOLCHAIN_DIR/clang-r383902/bin/clang"
+          export CLANG_TRIPLE="aarch64-linux-gnu-"
+
+          MAKE_OPTS=(
+            -C "$(pwd)"
+            O="$(pwd)/out"
+            KCFLAGS=-w
+            CONFIG_SECTION_MISMATCH_WARN_ONLY=y
+            CC="${CC}"
+            CLANG_TRIPLE="${CLANG_TRIPLE}"
+            CROSS_COMPILE="${CROSS_COMPILE}"
+            LLVM=1
+            LLVM_IAS=1
+          )
+
+          echo "Building kernel with $(nproc --all) jobs..."
+          make "${MAKE_OPTS[@]}" -j"$(nproc --all)" 2>&1 | tee build.log || {
+            echo "LLVM_IAS=1 failed, retrying without..."
+            make "${MAKE_OPTS[@]}" -j"$(nproc --all)" LLVM_IAS= 2>&1 | tee -a build.log || {
+              echo "Build failed!"
+              exit 1
+            }
+          }
+
+      - name: Package kernel
+        run: |
+          mkdir -p "$OUTPUT_DIR"
+          cd "$KERNEL_DIR"
+
+          SRC_IMG="out/arch/arm64/boot/Image"
+          if [ ! -f "$SRC_IMG" ]; then
+            echo "ERROR: No kernel Image found!"
+            find out/arch/arm64/boot -type f 2>/dev/null || true
+            exit 1
+          fi
+
+          # Copy raw Image
+          cp "$SRC_IMG" "$OUTPUT_DIR/Image"
+          echo "Kernel Image size: $(ls -lh $OUTPUT_DIR/Image | awk '{print $5}')"
+
+          # Create boot.img
+          if command -v mkbootimg &>/dev/null; then
+            mkbootimg \
+              --kernel "$SRC_IMG" \
+              --base 0x40000000 \
+              --pagesize 2048 \
+              --kernel_offset 0x00008000 \
+              --ramdisk_offset 0x01000000 \
+              --tags_offset 0x00000100 \
+              --cmdline "androidboot.selinux=permissive console=ttyS1,115200n8" \
+              -o "$OUTPUT_DIR/boot.img" 2>&1 || true
+          fi
+
+          # Tar for Odin
+          cd "$OUTPUT_DIR"
+          if [ -f "boot.img" ]; then
+            tar -cvf "KernelSU_A04_boot.tar" "boot.img"
+          else
+            tar -cvf "KernelSU_A04_boot.tar" "Image"
+          fi
+          md5sum "KernelSU_A04_boot.tar" | cut -d' ' -f1 | tr -d '\n' >> "KernelSU_A04_boot.tar"
+          mv "KernelSU_A04_boot.tar" "KernelSU_A04_boot.tar.md5"
+
+          # Flashable zip
+          mkdir -p "zip/META-INF/com/google/android"
+          printf '%s\n' \
+            '#!/sbin/sh' \
+            'ui_print "Flashing KernelSU kernel for A04..."' \
+            'dd if=/tmp/kernel/Image of=/dev/block/by-name/boot' \
+            'ui_print "Done!"' \
+            > "zip/META-INF/com/google/android/update-binary"
+          chmod +x "zip/META-INF/com/google/android/update-binary"
+          cp "$OUTPUT_DIR/Image" "zip/Image"
+          cd "zip"
+          zip -r "../KernelSU_A04_flashable.zip" . 2>/dev/null || true
+          cd "$OUTPUT_DIR"
+          rm -rf "zip"
+
+          echo ""
+          echo "=== OUTPUT FILES ==="
+          ls -lh "$OUTPUT_DIR/"
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: kernel-a04-kernelsu
+          path: |
+            ${{ env.OUTPUT_DIR }}/Image
+            ${{ env.OUTPUT_DIR }}/boot.img
+            ${{ env.OUTPUT_DIR }}/KernelSU_A04_boot.tar.md5
+            ${{ env.OUTPUT_DIR }}/KernelSU_A04_flashable.zip
+            ${{ env.KERNEL_DIR }}/build.log
+          if-no-files-found: error
+          retention-days: 30

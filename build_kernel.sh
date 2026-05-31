@@ -1,1 +1,453 @@
-IyEvYmluL2Jhc2gKc2V0IC1ldW9waXBlZmFpbAoKIyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiMgS2VybmVsU1UgKyBTVVNGUyBCdWlsZGVyIGZvciBTYW1zdW5nIEdhbGF4eSBBMDQgKFNNLUEwNDVGKQojIEJhc2VkIG9uOiByc3VudGstb3NzL2FuZHJvaWQfa2VybmVsX3NhbXN1bmdfYTA0bSAobXQ2NzY1KQogIyBLZXJuZWwgYmFzZTogNC4xOS4xOTEgfCBDbGFuZzogcjM4MzkwMmIgKDEyLjAuNSkKIyBTVVNGUzogc2ltb25wdW5rL3N1c2ZzNGtzdSAoa2VybmVsLTQuMTkgYnJhbmNoKQojID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KCldPUktfRElSPSIkKHB3ZCkiCktFUk5FTF9ESVI9IiR7V09SS19ESVJ9L2tlcm5lbCIKT1VUUFVUX0RJUj0iJHtXT1JLX0RJUn0vb3V0cHV0IgpUT09MQ0hBSU5fRElSPSIke1dPUktfRElSfS90b29sY2hhaW5zIgpTVVNGU19ESVI9IiR7V09SS19ESVJ9L3N1c2ZzIgpKT0JTPSQobnByb2MgLS1hbGwgMj4vZGV2L251bGwgfHwgZWNobyA0KQoKUkVEPSdcMDMzWzA7MzFtJzsgR1JFRU49J1wwMzNbMDszMm0nOyBZRUxMT1c9J1wwMzNbMTszM20nOyBOQz0nXDAzM1swbScKbG9nKCkgIHsgZWNobyAtZSAiJHtHUkVFTn1bK10ke05DfSAkMSI7IH0Kd2FybigpIHsgZWNobyAtZSAiJHtZRUxMT1d9WyFdJHtOQ30gJDEiOyB9CmVycigpICB7IGVjaG8gLWUgIiR7UkVEfVt4XSR7TkN9ICQxIjsgZXhpdCAxOyB9CgojID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiMgU3RlcCAxOiBEb3dubG9hZCBrZXJuZWwgc291cmNlCiMgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CmRvd25sb2FkX2tlcm5lbF9zb3VyY2UoKSB7CiAgICBpZiBbIC1mICIkS0VSTkVMX0RJUi9NYWtlZmlsZSIgXTsgdGhlbgogICAgICAgIGxvZyAiS2VybmVsIHNvdXJjZSBhbHJlYWR5IGV4aXN0cyBhdCAkS0VSTkVMX0RJUiIKICAgICAgICByZXR1cm4KICAgIGZpCiAgICBsb2cgIkNsb25pbmcga2VybmVsIHNvdXJjZSAocnN1bnRrLW9zcy9hbmRyb2lkX2tlcm5lbF9zYW1zdW5nX2EwNG0pLi4uIgogICAgbWtkaXIgLXAgIiRLRVJORUxfRElSIgogICAgZ2l0IGNsb25lIC0tZGVwdGg9MSAtYiBsYXRlc3QtQiBcCiAgICAgICAgaHR0cHM6Ly9naXRodWIuY29tL3JzdW50ay1vc3MvYW5kcm9pZF9rZXJuZWxfc2Ftc3VuZ19hMDRtLmdpdCBcCiAgICAgICAgIiRLRVJORUxfRElSIiAyPiYxIHx8IGVyciAiRmFpbGVkIHRvIGNsb25lIGtlcm5lbCBzb3VyY2UiCiAgICBsb2cgIlNvdXJjZSBjbG9uZWQuIgp9CgojID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiMgU3RlcCAyOiBTZXR1cCB0b29sY2hhaW5zIChjbGFuZyArIEdDQyA0LjkpCiMgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CnNldHVwX3Rvb2xjaGFpbnMoKSB7CiAgICBsb2cgIlNldHRpbmcgdXAgdG9vbGNoYWlucy4uLiIKICAgIG1rZGlyIC1wICIkVE9PTENIQUlOX0RJUiIKICAgIGNkICIkVE9PTENIQUlOX0RJUiIKCiAgICAjIFVzZSBtaXJyb3JzIGZyb20gcmF2aW5kdTY0NC9BbmRyb2lkLUtlcm5lbC1UdXRvcmlhbHMgcmVsZWFzZXMKICAgICMgVGhlc2UgYXJlIGV4YWN0IEFPU1AgY2xhbmctcjM4MzkwMmIgYW5kIGFhcmNoNjQtbGludXgtYW5kcm9pZC00LjkgdGFyYmFsbHMKICAgIGxvY2FsIE1JUlJPUl9CQVNFPWh0dHBzOi8vZ2l0aHViLmNvbS9yYXZpbmR1NjQ0L0FuZHJvaWQtS2VybmVsLVR1dG9yaWFscy9yZWxlYXNlcy9kb3dubG9hZC90b29sY2hhaW5zCgogICAgIyAtLS0gQ2xhbmcgLS0tCiAgICBpZiBbICEgLWYgImNsYW5nLXIzODM5MDIvYmluL2NsYW5nIiBdOyB0aGVuCiAgICAgICAgbG9nICJEb3dubG9hZGluZyBjbGFuZy1yMzgzOTAyYiAoQ2xhbmcgMTIuMC41KS4uLiIKICAgICAgICBta2RpciAtcCBjbGFuZy1yMzgzOTAyCiAgICAgICAgY3VybCAtTCAtbyBjbGFuZy50YXIuZ3ogLS1jb25uZWN0LXRpbWVvdXQgMzAgLS1yZXRyeSAzIFwKICAgICAgICAgICAgIiR7TUlSUk9SX0JBU0V9L2NsYW5nLXIzODM5MDJiLnRhci5neiIgfHwgewogICAgICAgICAgICB3YXJuICJNaXJyb3IgZmFpbGVkLCB0cnlpbmcgcmF2aSdzIGFsdGVybmF0aXZlLi4uIgogICAgICAgICAgICBjdXJsIC1MIC1vIGNsYW5nLnRhci5neiAtLWNvbm5lY3QtdGltZW91dCAzMCAtLXJldHJ5IDMgXAogICAgICAgICAgICAgICAgIiR7TUlSUk9SX0JBU0V9L2NsYW5nLXIzODM5MDIudGFyLmd6IiB8fCB7CiAgICAgICAgICAgICAgICBlcnIgIkZhaWxlZCB0byBkb3dubG9hZCBjbGFuZyB0b29sY2hhaW4gZnJvbSBhbGwgc291cmNlcy4iCiAgICAgICAgICAgIH0KICAgICAgICB9CiAgICAgICAgdGFyIC14emYgY2xhbmcudGFyLmd6IC1DIGNsYW5nLXIzODM5MDIgMj4vZGV2L251bGwgfHwgZXJyICJGYWlsZWQgdG8gZXh0cmFjdCBjbGFuZyIKICAgICAgICBybSAtZiBjbGFuZy50YXIuZ3oKICAgIGZpCgogICAgIyAtLS0gR0NDIDQuOSBhYXJjaDY0IC0tLQogICAgaWYgWyAhIC1mICJhYXJjaDY0LWxpbnV4LWFuZHJvaWQtNC45L2Jpbi9hYXJjaDY0LWxpbnV4LWFuZHJvaWRrZXJuZWwtbGQiIF07IHRoZW4KICAgICAgICBsb2NhbCBNSVJST1JfQkFTRT0iaHR0cHM6Ly9naXRodWIuY29tL3JhdmluZHU2NDQvQW5kcm9pZC1LZXJuZWwtVHV0b3JpYWxzL3JlbGVhc2VzL2Rvd25sb2FkL3Rvb2xjaGFpbnMiCiAgICAgICAgbG9nICJEb3dubG9hZGluZyBHQ0MgNC45IChhYXJjaDY0LWxpbnV4LWFuZHJvaWQpLi4uIgogICAgICAgIGN1cmwgLUwgLW8gZ2NjLnRhci5neiAtLWNvbm5lY3QtdGltZW91dCAzMCAtLXJldHJ5IDMgXAogICAgICAgICAgICAiJHtNSVJST1JfQkFTRX0vYWFyY2g2NC1saW51eC1hbmRyb2lkLTQuOS50YXIuZ3oiIHx8IHsKICAgICAgICAgICAgd2FybiAiU3RhbmRhcmQgR0NDIHRhcmJhbGwgZmFpbGVkLCB0cnlpbmcgTGludXgtNS40IHZhcmlhbnQuLi4iCiAgICAgICAgICAgIGN1cmwgLUwgLW8gZ2NjLnRhci5neiAtLWNvbm5lY3QtdGltZW91dCAzMCAtLXJldHJ5IDMgXAogICAgICAgICAgICAgICAgIiR7TUlSUk9SX0JBU0V9L2FhcmNoNjQtbGludXgtYW5kcm9pZC00LjktTGludXgtNS40LnRhci5neiIgfHwgewogICAgICAgICAgICAgICAgZXJyICJGYWlsZWQgdG8gZG93bmxvYWQgR0NDIHRvb2xjaGFpbi4iCiAgICAgICAgICAgIH0KICAgICAgICB9CgogICAgICAgICMgVGFyYmFsbCBoYXMgaW50ZXJuYWwgcGF0aDogZ2NjL2xpbnV4LXg4Ni9hYXJjaDY0L2FhcmNoNjQtbGludXgtYW5kcm9pZC00LjkvLi4uCiAgICAgICAgbWtkaXIgLXAgZ2NjX3RlbXAKICAgICAgICB0YXIgLXh6ZiBnY2MudGFyLmd6IC1DIGdjY190ZW1wIDI+L2Rldi9udWxsIHx8IGVyciAiRmFpbGVkIHRvIGV4dHJhY3QgR0NDIgogICAgICAgIHJtIC1mIGdjYy50YXIuZ3oKCiAgICAgICAgIyBGaW5kIGFjdHVhbCBiaW4gZGlyIGFuZCByZWxvY2F0ZQogICAgICAgIGxvY2FsIEdDQ19CSU5fRElSPSQoZmluZCBnY2NfdGVtcCAtdHlwZSBkIC1uYW1lICJiaW4iIC1wYXRoICIqL2FhcmNoNjQtbGludXgtYW5kcm9pZC00LjkvYmluIiB8IGhlYWQgLTEpCiAgICAgICAgaWYgWyAteiAiJEdDQ19CSU5fRElSIiBdOyB0aGVuCiAgICAgICAgICAgIGVyciAiQ291bGQgbm90IGZpbmQgdG9vbGNoYWluIGJpbiBkaXI6ICQoZmluZCBnY2NfdGVtcCAtdHlwZSBkIC1tYXhkZXB0aCA2IHwgaGVhZCAtMTApIgogICAgICAgIGZpCiAgICAgICAgbWtkaXIgLXAgYWFyY2g2NC1saW51eC1hbmRyb2lkLTQuOQogICAgICAgIGNwIC1yICIkKGRpcm5hbWUgIiRHQ0NfQklOX0RJUiIpIi8qIGFhcmNoNjQtbGludXgtYW5kcm9pZC00LjkvCiAgICAgICAgcm0gLXJmIGdjY190ZW1wCgogICAgICAgICMgQ3JlYXRlIGFuZHJvaWQrZXJuZWwtIHN5bWxpbmtzIChrZXJuZWwgZXhwZWN0cyB0aGlzIHByZWZpeCkKICAgICAgICBjZCBhYXJjaDY0LWxpbnV4LWFuZHJvaWQtNC45L2JpbgogICAgICAgIGZvciBmIGluIGFhcmNoNjQtbGludXgtYW5kcm9pZC0qOyBkbwogICAgICAgICAgICBpZiBbIC1mICIkZiIgXSAmJiBbICEgLWUgIiR7Zi9hbmRyb2lkLS9hbmRyb2lkZXJuZWwtfSIgXTsgdGhlbgogICAgICAgICAgICAgICAgbG4gLXNmICIkZiIgIiR7Zi9hbmRyb2lkLS9hbmRyb2lkZXJuZWwtfSIKICAgICAgICAgICAgZmkKICAgICAgICBkb25lCiAgICAgICAgY2QgLi4vLi4KICAgICAgICBsb2cgIkNyZWF0ZWQgYWFyY2g2NC1saW51eC1hbmRyb2lka2VybmVsLSogc3ltbGlua3MiCiAgICBmaQoKICAgIGxvZyAiVG9vbGNoYWlucyByZWFkeS4iCiAgICBlY2hvICIgIENsYW5nOiAkKGNsYW5nLXIzODM5MDIvYmluL2NsYW5nIC0tdmVyc2lvbiAyPiYxIHwgaGVhZCAtMSkiCiAgICBlY2hvICIgR0NDIHByZWZpeDogJChscyBhYXJjaDY0LWxpbnV4LWFuZHJvaWQtNC45L2Jpbi9hYXJjaDY0LWxpbnV4LWFuZHJvaWRrZXJuZWwtbGQgMj4vZGV2L251bGwgJiYgZWNobyAnZm91bmQnIHx8IGVjaG8gJ21pc3NpbmcnKSIKfQoKIyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KIyBTdGVwIDM6IEludGVncmF0ZSBTVVNGUyArIEtlcm5lbFNVIChzdXNmcy1ya3N1LW1hc3RlcikKIyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KaW50ZWdyYXRlX3N1c2ZzKCkgewogICAgbG9nICI9PT0gSW50ZWdyYXRpbmcgU1VTRlMgKyBLZXJuZWxTVSA9PT0iCiAgICBjZCAiJEtFUk5FTF9ESVIiCgogICAgIyBTdGVwIDNhOiBEb3dubG9hZCBTVVNGUyBwYXRjaGVzIGZyb20gR2l0TGFiCiAgICBsb2cgIkRvd25sb2FkaW5nIFNVU0ZTIDQuMTkgcGF0Y2hlcy4uLiIKICAgIG1rZGlyIC1wICIkU1VTRlNfRElSIgogICAgY2QgIiRTVVNGU19ESVIiCgogICAgbG9jYWwgR0lUTEFCX0FQST0iaHR0cHM6Ly9naXRsYWIuY29tL2FwaS92NC9wcm9qZWN0cy9zaW1vbnB1bmslMkZzdXNmczRrc3UvcmVwb3NpdG9yeSIKICAgIGxvY2FsIFNVU0ZTX1JFRj0ia2VybmVsLTQuMTkiCgogICAgIyBEb3dubG9hZCBtYWluIHBhdGNoIGZpbGUKICAgIGN1cmwgLUwgLS1jb25uZWN0LXRpbWVvdXQgMzAgLS1yZXRyeSAzIFwKICAgICAgICAiJHtHSVRMQUJfQVBJfS9maWxlcy9rZXJuZWxfcGF0Y2hlcyUyRjUwX2FkZF9zdXNmc19pbl9rZXJuZWwtNC4xOS5wYXRjaC9yYXc/cmVmPSR7U1VTRlNfUkVGfSIgXAogICAgICAgIC1vICI1MF9hZGRfc3VzZnNfaW5fa2VybmVsLTQuMTkucGF0Y2giIHx8IHdhcm4gIkZhaWxlZCB0byBkb3dubG9hZCBtYWluIFNVU0ZDIHBhdGNoIgoKICAgICMgRG93bmxvYWQgaW5kaXZpZHVhbCBzb3VyY2UgZmlsZXMgKGZvciBkaXJlY3QgcGxhY2VtZW50IGlmIHBhdGNoIGZhaWxzKQogICAgbG9jYWwgU1VTRlNfRklMRVM9KAogICAgICAgICJrZXJuZWxfcGF0Y2hlcy9mcy9zdXNmcy5jOmZzL3N1c2ZzLmMiCiAgICAgICAgImtlcm5lbF9wYXRjaGVzL2ZzL3N1c19zdS5jOmZzL3N1c19zdS5jIgogICAgICAgICJrZXJuZWxfcGF0Y2hlcy9pbmNsdWRlL2xpbnV4L3N1c2ZzLmg6aW5jbHVkZS9saW51eC9zdXNmcy5oIgogICAgICAgICJrZXJuZWxfcGF0Y2hlcy9pbmNsdWRlL2xpbnV4L3N1c2ZzX2RlZi5oOmluY2x1ZGUvbGludXgvc3VzZnNfZGVmLmgiCiAgICApCiAgICBmb3IgZW50cnkgaW4gIiR7U1VTRlNfRklMRVNbQF19IjsgZG8KICAgICAgICBsb2NhbCBzcmM9IiR7ZW50cnklJTokfSIKICAgICAgICBsb2NhbCBkc3Q9IiR7ZW50cnkjIyp9IgogICAgICAgIGxvY2FsIGRpcj0kKGRpcm5hbWUgIiRkc3QiKQogICAgICAgIG1rZGlyIC1wICIkZGlyIgogICAgICAgICMgR2l0TGFiIEFQSSB2NCByZXF1aXJlcyAnLycgaW4gZmlsZSBwYXRocyB0byBiZSBlbmNvZGVkIGFzICclMkYnCiAgICAgICAgbG9jYWwgZW5jb2RlZF9zcmM9IiR7c3JjLy9cLy8lMkZ9IgogICAgICAgIGN1cmwgLUwgLS1jb25uZWN0LXRpbWVvdXQgMzAgLS1yZXRyeSAzIFwKICAgICAgICAgICAgIiR7R0lUTEFCX0FQSX0vZmlsZXMvJHtlbmNvZGVkX3NyY30vcmF3P3JlZj0ke1NVU0ZTX1JFRn0iIFwKICAgICAgICAgICAgLW8gIiRkc3QiIHx8IHdhcm4gIkZhaWxlZCB0byBkb3dubG9hZCAkZHN0IgogICAgZG9uZQoKICAgICMgRG93bmxvYWQgS2VybmVsU1UvIGRpcmVjdG9yeSBmcm9tIFNVU0ZTCiAgICBsb2cgIkRvd25sb2FkaW5nIFNVU0ZTIEludGVncmF0aW9uIGZpbGVzLi4uIgogICAgY3VybCAtTCAtLWNvbm5lY3QtdGltZW91dCAzMCAtLXJldHJ5IDMgXAogICAgICAgICIke0dJVExBQl9BUEl9L2ZpbGVzL2tlcm5lbF9wYXRjaGVzJTJGS2VybmVsU1UlMkZzdWNvbXBhdC5jL3Jhdz9yZWY9JHtTVVNGU19SRUZ9IiBcCiAgICAgICAgLW8gIktlcm5lbFNVL3N1Y29tcGF0LmMiIDI+L2Rldi9udWxsIHx8IHRydWUKCiAgICBjZCAiJEtFUk5FTF9ESVIiCgogICAgIyBTdGVwIDNiOiBBcHBseSBTVVNGUyBrZXJuZWwgcGF0Y2gKICAgIGlmIFsgLWYgIiR7U1VTRlNfRElSfS81MF9hZGRfc3VzZnNfaW5fa2VybmVsLTQuMTkucGF0Y2giIF07IHRoZW4KICAgICAgICBsb2cgIkFwcGx5aW5nIFNVU0ZTIGtlcm5lbCBwYXRjaCAoZnV6ej0zLCB0b2xlcmFudCkuLi4iCiAgICAgICAgY2QgIiRLRVJORUxfRElSIgogICAgICAgIAogICAgICAgICMgVHJ5IGFwcGx5aW5nIHdpdGggcGF0Y2guIFVzZSAtLWZvcndhcmQgdG8gc2tpcCBhbHJlYWR5LWFwcGxpZWQgaHVua3MuCiAgICAgICAgIyAtLWZ1eno9MyB0b2xlcmF0ZXMgdXAgdG8gMyBsaW5lcyBvZiBjb250ZXh0IGRpZmZlcmVuY2UKICAgICAgICAjIC0tbm8tYmFja3VwLWlmLW1pc21hdGNoIGF2b2lkcyAub3JpZyBmaWxlcwogICAgICAgICMgRm9yY2UgZXhpdCBjb2RlIHRvIDA7IHdlIHRyYWNrIHJlamVjdHMgc2VwYXJhdGVseQogICAgICAgIHBhdGNoIC1wMSAtLWZvcndhcmQgLS1mdXp6PTMgLS1uby1iYWNrdXAtaWYtbWlzbWF0Y2ggXAogICAgICAgICAgICA8ICIke1NVU0ZTX0RJUn0vNTBfYWRkX3N1c2ZzX2luX2tlcm5lbC00LjE5LnBhdGNoIiAyPiYxIHx8IHRydWUKICAgICAgICAKICAgICAgICAjIENoZWNrIGZvciByZWplY3RzCiAgICAgICAgbG9jYWwgUkVKRUNUUz0kKGZpbmQgLiAtbmFtZSAiKi5yZWoiIDI+L2Rldi9udWxsIHwgd2MgLWwpCiAgICAgICAgaWYgWyAiJFNVU0ZTX0RJUl0iIC1ndCAwIF07IHRoZW4KICAgICAgICAgICAgd2FybiAiU1VTRlMgcGF0Y2ggaGFkICR7UkVKRUNUU30gcmVqZWN0ZWQgaHVuayhzKSBpbjoiCiAgICAgICAgICAgIGZpbmQgLiAtbmFtZSAiKi5yZWoiIDI+L2Rldi9udWxsIHwgd2hpbGUgcmVhZCByZWo7IGRvCiAgICAgICAgICAgICAgICB3YXJuICIgICR7cmVqIy4vfSIKICAgICAgICAgICAgZG9uZQogICAgICAgICAgICBsb2cgIldpbGwgbWFudWFsbHkgZml4IGNyaXRpY2FsIHJlamVjdGlvbnMuLi4iCiAgICAgICAgZWxzZQogICAgICAgICAgICBsb2cgIlNVU0ZDIHBhdGNoIGFwcGxpZWQgY2xlYW5seSEiCiAgICAgICAgZmkKICAgIGZpCgogICAgIyBTdGVwIDNjOiBDb3B5IFNVU0ZDIHNvdXJjZSBmaWxlcyBkaXJlY3RseSB0byBrZXJuZWwgdHJlZQogICAgIyBUaGVzZSBhcmUgdGhlIGNvcmUgU1VTRlMgZmlsZXMgbmVlZGVkIHJlZ2FyZGxlc3Mgb2YgcGF0Y2ggc3VjY2VzcwogICAgbG9nICJDb3B5aW5nIFNVU0ZDIHNvdXJjZSBmaWxlcyB0byBrZXJuZWwgdHJlZS4uLiIKICAgIAogICAgIyBDb3B5IHN1c2ZzLmMgYW5kIHN1c19zdS5jIHRvIGZzLwogICAgaWYgWyAtZiAiJHtTVVNGU19ESVJ9L2ZzL3N1c2ZzLmMiIF07IHRoZW4KICAgICAgICBjcCAiJHtTVVNGU19ESVJ9L2ZzL3N1c2ZzLmMiICJmcy9zdXNmcy5jIgogICAgICAgIGNobW9kIDY0NCAiZnMvc3VzZnMuYyIKICAgIGZpCiAgICBpZiBbIC1mICIke1NVU0ZTX0RJUn0vZnMvc3VzX3N1LmMiIF07IHRoZW4KICAgICAgICBjcCAiJHtTVVNGU19ESVJ9L2ZzL3N1c19zdS5jIiAiZnMvc3VzX3N1LmMiCiAgICAgICAgY2htb2QgNjQ0ICJmcy9zdXNfc3UuYyIKICAgIGZpCgogICAgIyBDb3B5IGhlYWRlcnMKICAgIGlmIFsgLWYgIiR7U1VTRlNfRElSfS9pbmNsdWRlL2xpbnV4L3N1c2ZzLmgiIF07IHRoZW4KICAgICAgICBjcCAiJHtTVVNGU19ESVJ9L2luY2x1ZGUvbGludXgvc3VzZnMuaCIgImluY2x1ZGUvbGludXgvc3VzZnMuaCIKICAgICAgICBjaG1vZCA2NDQgImluY2x1ZGUvbGludXgvc3VzZnMuaCIKICAgIGZpCiAgICBpZiBbIC1mICIke1NVU0ZTX0RJUn0vaW5jbHVkZS9saW51eC9zdXNmc19kZWYuaCIgXTsgdGhlbgogICAgICAgIGNwICIke1NVU0ZTX0RJUn0vaW5jbHVkZS9saW51eC9zdXNmc19kZWYuaCIgImluY2x1ZGUvbGludXgvc3VzZnNfZGVmLmgiCiAgICAgICAgY2htb2QgNjQ0ICJpbmNsdWRlL2xpbnV4L3N1c2ZzX2RlZi5oIgogICAgZmkKCiAgICAjIFN0ZXAgM2Q6IE1hbnVhbGx5IGFwcGx5IGVzc2VudGlhbCBTVVNGUyBjaGFuZ2VzIHRvIGZzL01ha2VmaWxlCiAgICAjIChUaGlzIGlzIHRoZSBtb3N0IGNyaXRpY2FsIG9uZSB0aGF0J3MgdW5saWtlbHkgdG8gY29uZmxpY3QpCiAgICBsb2cgIkVuc3VyaW5nIGZzL01ha2VmaWxlIGhhcyBTVVNGUyBlbnRyeS4uLiIKICAgIGlmICEgZ3JlcCAtcSAic3VzZnMubyIgImZzL01ha2VmaWxlIjsgdGhlbgogICAgICAgICMgQWRkIGFmdGVyIHRoZSBtYWluIG9iai15IGxpc3QsIGJlZm9yZSB0aGUgQkxPQ0sgY2hlY2sKICAgICAgICBzZWQgLWkgJy9eb2JqLXkgOj0uKm5zZnMuby9hIG9iai0kKENPTkZJR19LU1VfU1VTRlkpICs9IHN1c2ZzLm8nICJmcy9NYWtlZmlsZSIgMj4vZGV2L251bGwgfHwgewogICAgICAgICAgICB3YXJuICJDb3VsZCBub3QgYXV0by1hZGQgU1VTRlMgdG8gZnMvTWFrZWZpbGU7IG1hbnVhbCBjaGVjayBuZWVkZWQuIgogICAgICAgIH0KICAgIGZpCgogICAgIyBTdGVwIDNlOiBJbnRlZ3JhdGUgS2VybmVsU1UgdXNpbmcgc3VzZnMtcmtzdS1tYXN0ZXIgYnJhbmNoCiAgICBsb2cgIkludGVncmF0aW5nIEtlcm5lbFNVIChzdXNmcy1ya3N1LW1hc3RlciBicmFuY2gpLi4uIgogICAgY2QgIiRLRVJORUxfRElSIgoKICAgICMgQmFja3VwIGFuZCByZXBsYWNlIG10ayBjb25uZWN0aXZpdHkgZHJpdmVycyAobmVlZGVkIGZvciBXaUZpIGFmdGVyIHJlYnVpbGQpCiAgICBpZiBbIC1kICJkcml2ZXJzL21pc2MvbWVkaWF0ZWsvY29ubmVjdGl2aXR5IiBdOyB0aGVuCiAgICAgICAgbG9nICJSZXBsYWNpbmcgbXRrIGNvbm5lY3Rpdml0eSBtb2R1bGUgKFdpRmkgZml4KS4uLiIKICAgICAgICBybSAtcmYgZHJpdmVycy9taXNjL21lZGlhdGVrL2Nvbm5lY3Rpdml0eQogICAgICAgIGdpdCBjbG9uZSAtLWRlcHRoPTEgaHR0cHM6Ly9naXRodWIuY29tL3JzdW50a09yZ3MvbXRrX2Nvbm5lY3Rpdml0eV9tb2R1bGUuZ2l0IFwKICAgICAgICAgICAgLWIgc3RhZ2luZy00LjE0IGRyaXZlcnMvbWlzYy9tZWRpYXRlay9jb25uZWN0aXZpdHkgMj4vZGV2L251bGwgfHwgewogICAgICAgICAgICB3YXJuICJDb3VsZCBub3QgY2xvbmUgbXRrX2Nvbm5lY3Rpdml0eV9tb2R1bGU7IFdpRmkgbWF5IG5vdCB3b3JrLiIKICAgICAgICB9CiAgICAgICAgcm0gLXJmIGRyaXZlcnMvbWlzYy9tZWRpYXRlay9jb25uZWN0aXZpdHkvLmdpdAogICAgZmkKCiAgICAjIFVzZSB0aGUgU1VTRlMtYXdhcmUgS2VybmVsU1Ugc2V0dXAgc2NyaXB0CiAgICBsb2cgIlJ1bm5pbmcgS2VybmVsU1Ugc2V0dXAgKHN1c2ZzLXJrc3UtbWFzdGVyKS4uLiIKICAgIGN1cmwgLUxTcyAiaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3JzdW50ay9LZXJuZWxTVS9zdXNmcy1ya3N1LW1hc3Rlci9rZXJuZWwvc2V0dXAuc2giIFwKICAgICAgICB8IGJhc2ggLXMgbGF0ZXN0IDI+JjEgfHwgewogICAgICAgIHdhcm4gIkF1dG8gc2V0dXAgZmFpbGVkLCB0cnlpbmcgbWFudWFsIGNsb25lLi4uIgogICAgICAgICMgTWF0Y2ggc2V0dXAuc2g6IHBsYWNlIGluIEtlcm5lbFNVL8KgwqArc3ltbGluayBmcm9tIGRyaXZlcnMva2VybmVsc3UKICAgICAgICBpZiBbICEgLWQgIktlcm5lbFNVIiBdOyB0aGVuCiAgICAgICAgICAgIGxvY2FsIEtTVV9UTVA9IiR7V09SS19ESVJ9L2tzdV90bXAiCiAgICAgICAgICAgIG1rZGlyIC1wICIkS1NVX1RNUCIKICAgICAgICAgICAgZ2l0IGNsb25lIC0tZGVwdGg9MSAtYiBzdXNmcy1ya3N1LW1hc3RlciBcCiAgICAgICAgICAgICAgICBodHRwczovL2dpdGh1Yi5jb20vcnN1bnRrL0tlcm5lbFNVLmdpdCAiJEtTVV9UTVAiIDI+L2Rldi9udWxsIHx8IHsKICAgICAgICAgICAgICAgIGVyciAiRmFpbGVkIHRvIGNsb25lIEtlcm5lbFNVIChzdXNmcy1ya3N1LW1hc3RlcikhIgogICAgICAgICAgICB9CiAgICAgICAgICAgIGNwIC1yICIkS1NVX1RNUCIgIiRLRVJORUxfRElSL0tlcm5lbFNVIgogICAgICAgICAgICBsbiAtc2YgIi4uLy4uL0tlcm5lbFNVL2tlcm5lbCIgIiRLRVJORUxfRElSL2RyaXZlcnMva2VybmVsc3UiIDI+L2Rldi9udWxsIHx8IHRydWUKICAgICAgICAgICAgcm0gLXJmICIkS1NVX1RNUCIKICAgICAgICBmaQogICAgfQoKICAgICMgVmVyaWZ5IChzZXR1cC5zaCBwdXRzIGZpbGVzIGluIEtlcm5lbFNVL2tlcm5lbC8sIG5vdCBrZXJuZWwvKQogICAgaWYgWyAhIC1mICJLZXJuZWxTVS9rZXJuZWwva3N1LmgiIF0gJiYgWyAhIC1MICJkcml2ZXJzL2tlcm5lbHN1IiBdOyB0aGVuCiAgICAgICAgZXJyICJLZXJuZWxTVSBpbnRlZ3JhdGlvbiBmYWlsZWQhIgogICAgZmkKCiAgICBsb2cgIlNVU0ZTIICrIEtlcm5lbFNVIEludGVncmF0aW9uIGNvbXBsZXRlLiIKfQoKIyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KIyBTdGVwIDQ6IENvbmZpZ3VyZSBrZXJuZWwgYTA0X2RlZmNvbmZpZyArIFNVU0ZTIICrIEtlcm5lbFNVKQojID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQpjb25maWd1cmVfa2VybmVsKCkgewogICAgbG9nICJDb25maWd1cmluZyBrZXJuZWwuLi4iCiAgICBjZCAiJEtFUk5FTF9ESVIiCgogICAgIyBTZXQgdXAgdG9vbGNoYWluIHBhdGhzCiAgICBleHBvcnQgQVJDSD1hcm02NAogICAgZXhwb3J0IENST1NTX0NPTVBJTEU9IiR7VE9PTENIQUlOX0RJUn0vYWFyY2g2NC1saW51eC1hbmRyb2lkLTQuOS9iaW4vYWFyY2g2NC1saW51eC1hbmRyb2lka2VybmVsLSIKICAgIGV4cG9ydCBDQz0iJHtUT09MQ0hBSU5fRElSfS9jbGFuZy1yMzgzOTAyL2Jpbi9jbGFuZyIKICAgIGV4cG9ydCBDTEFOR19UUklQTEU9ImFhcmNoNjQtbGludXgtZ251LSIKCiAgICBsb2NhbCBNQUtFX09QVFM9KAogICAgICAgIC1DICIkKHB3ZCkiCiAgICAgICAgTz0iJChwd2QpL291dCIKICAgICAgICBLQ0ZMQUdTPS13CiAgICAgICAgQ09ORklHX1NFQ1RJT05fTUlTTUFUQ0hfV0FSTl9PTkxZPXkKICAgICAgICBBUkNIPWFybTY0CiAgICAgICAgQ0M9IiR7Q0N9IgogICAgICAgIENMQU5HX1RSSVBMRT0iJHtDTEFOR19UUklQTEV9IgogICAgICAgIENST1NTX0NPTVBJTEU9IiR7Q1JPU1NfQ09NUElMRX0iCiAgICApCgogICAgIyBTdGVwIDRhOiBHZW5lcmF0ZSBiYXNlIC5jb25maWcgdXNpbmcgYTA0X2RlZmNvbmZpZwogICAgbG9nICJVc2luZyBhMDRfZGVmY29uZmlnLi4uIgogICAgbWFrZSAiJHtNQUtFX09QVFNbQF19IiBhMDRfZGVmY29uZmlnIHx8IGVyciAiRGVmY29uZmlnIGZhaWxlZCIKCiAgICAjIFN0ZXAgNGI6IEVuYWJsZSBLZXJuZWxTVQogICAgbG9nICJFbmFibGluZyBLZXJuZWxTVS4uLiIKICAgIHNjcmlwdHMvY29uZmlnIC0tZmlsZSBvdXQvLmNvbmZpZyAtLWVuYWJsZSBDT05GSUdfS1NVCiAgICBzY3JpcHRzL2NvbmZpZyAtLWZpbGUgb3V0Ly5jb25maWcgLS1lbmFibGUgQ09ORklHX0tTVV9NQU5VQUxfSE9PSwoKICAgICMgU3RlcCA0YzogRW5hYmxlIFNVU0ZJIGZlYXR1cmVzCiAgICBsb2cgIkVuYWJsaW5nIFNVU0ZTIGhpZGluZyBmZWF0dXJlcy4uLiIKICAgIGZvciBvcHQgaW4gXAogICAgICAgIEtTVV9TVVNGUyBLU1VfU1VTRlNfU1VTX1BBVEggXAogICAgICAgIEtTVV9TVVNGU19TVVNfTU9VTlQgS1NVX1NVU0ZTX1NVU19LU1RBVCBcCiAgICAgICAgS1NVX1NVU0ZTX09QRU5fUkVESVJFQ1QgS1NVX1NVU0ZTX1NVU19TVSBcCiAgICAgICAgU1BPT0ZfVU5BTUUgS1NVX1NVU0ZTX0VORk9SQ0VfU1VTRlMgXAogICAgICAgIEtTVV9TVVNGU19ISURFX0tTVV9TVVNGU19TWU1CT0xTIFwKICAgICAgICBLU1VfU1VTRlNfU1VTX09WRVJMQVlGUzsgZG8KICAgICAgICBzY3JpcHRzL2NvbmZpZyAtLWZpbGUgb3V0Ly5jb25maWcgLS1lbmFibGUgIkNPTkZJR18ke29wdH0iIDI+L2Rldi9udWxsIHx8IHRydWUKICAgIGRvbmUKCiAgICAjIFN0ZXAgNGQ6IERpc2FibGUgU2Ftc3VuZyBzZWN1cml0eSB0aGF0IGNvbmZsaWN0cyB3aXRoIEtlcm5lbFNVL1NVU0ZTCiAgICBsb2cgIkRpc2FibGluZyBTYW1zdW5nIHNlY3VyaXR5IG1vZHVsZXMuLi4iCiAgICBmb3Igb3B0IGluIFwKICAgICAgICBTRUNVUklUWV9ERUZFWCBQUk9DQSBGSVZFIFVIIFJLUF9LRFAgXAogICAgICAgIFNFQ19SRVNUUklDVF9ST09USU5HIFNFQ19SRVNUUklDVF9TRVRVSUQgU0VDX1JFU1RSSUNUX0ZPUksgXAogICAgICAgIFNFQ19SRVNUUklDVF9ST09USU5HX0xPRyBLTk9YX0tBUCBcCiAgICAgICAgVElNQSBUSU1BX0xLTUFVVEggVElNQV9MS01fQkxPQ0sgVElNQV9MS01BVVRIX0NPREVfUFJPVCBcCiAgICAgICAgSU5URUdSSVRZIElOVEVHUklUWV9TSUdOQVRVUkUgSU5URUdSSVRZX0FTWU1NRVRSSUNfS0VZUyBcCiAgICAgICAgSU5URUdSSVRZX1RSVVNURURfS0VZUklORyBJTlRFR1JJVFlfQVVESVQgRE1fVkVSSVRZOyBkbwogICAgICAgIHNjcmlwdHMvY29uZmlnIC0tZmlsZSBvdXQvLmNvbmZpZyAtLWRpc2FibGUgIkNPTkZJR18ke29wdH0iIDI+L2Rldi9udWxsIHx8IHRydWUKICAgIGRvbmUKCiAgICAjIFN0ZXAgNGU6IFNFTGludXggcGVybWlzc2l2ZSB0b2dnbGUKICAgIHNjcmlwdHMvY29uZmlnIC0tZmlsZSBvdXQvLmNvbmZpZyAtLWVuYWJsZSBDT05GSUdfU0VDVVJJVFlfU0VMSU5VWF9ERVZFTE9QIHx8IHRydWUKICAgIHNjcmlwdHMvY29uZmlnIC0tZmlsZSBvdXQvLmNvbmZpZyAtLWRpc2FibGUgQ09ORklHX1NFQ1VSSVRZX1NFTElOVVhfQUxXQVlTX0VORk9SQ0UgfHwgdHJ1ZQoKICAgICMgU3RlcCA0ZjogTG93IGRldGVjdGFiaWxpdHkgc2V0dGluZ3MKICAgIHNjcmlwdHMvY29uZmlnIC0tZmlsZSBvdXQvLmNvbmZpZyAtLWRpc2FibGUgQ09ORklHX0tTVV9ERUJVRyAyPi9kZXYvbnVsbCB8fCB0cnVlCiAgICBzY3JpcHRzL2NvbmZpZyAtLWZpbGUgb3V0Ly5jb25maWcgLS1zZXQtc3RyIENPTkZJR19MT0NBTFZFUlNJT04gIi10aC12MiIKICAgIHNjcmlwdHMvY29uZmlnIC0tZmlsZSBvdXQvLmNvbmZpZyAtLWRpc2FibGUgQ09ORklHX0xPQ0FMVkVSU0lPTl9BVVRPCgogICAgIyBTdGVwIDRnOiBPbGRkZWZjb25maWcgdG8gcmVzb2x2ZSBhbnkgbmV3IGRlcGVuZGVuY2llcwogICAgbWFrZSAiJHtNQUtFX09QVFNbQF19IiBvbGRkZWZjb25maWcgMj4vZGV2L251bGwgfHwgdHJ1ZQoKICAgIGxvZyAiS2VybmVsIGNvbmZpZ3VyZWQgd2l0aCBTVVNGUyArIGxvdy1kZXRlY3RhYmlsaXR5IHNldHRpbmdzLiIKfQoKIyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KIyBTdGVwIDU6IEJ1aWxkIHRoZSBrZXJuZWwKIyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KYnVpbGRfa2VybmVsKCkgewogICAgbG9nICJCdWlsZGluZyBrZXJuZWwgd2l0aCAke0pPQlN9IGpvYnMuLi4iCiAgICBjZCAiJEtFUk5FTF9ESVIiCgogICAgIyBDYW1vdWZsYWdlOiBzZXQgbWFuYWdlciBhcHAgdG8gU2Ftc3VuZyBzeXN0ZW0gYXBwIChlLmcuLCBmaXJtd2FyZSB1cGRhdGUpCiAgICBsb2NhbCBNQU5BR0VSX1BLRz0iJHtLU1VfTUFOQUdFUl9QQUNLQUdFOi1jb213c3luY21sZG19IgoKICAgIGxvY2FsIE1BS0VfT1BUUz0oCiAgICAgICAgLUMgIiQocHdkKSIKICAgICAgICBPPSIkKHB3ZCkvb3V0IgogICAgICAgIEtDRkxBR1M9LXcKICAgICAgICBDT05GSUdfU0VDVElPTl9NSVNNQVRDSF9XQVJOX09OTFk9eQogICAgICAgIEFSQ0g9YXJtNjQKICAgICAgICBDQz0iJHtDQ30iCiAgICAgICAgQ0xBTkdfVFJJUExFPSIke0NMQU5HX1RSSVBMRX0iCiAgICAgICAgQ1JPU1NfQ09NUElMRT0iJHtDUk9TU19DT01QSUxFfSIKICAgICAgICBLU1VfTUFOQUdFUl9QQUNLQUdFPSIke01BTkFHRVJfUEtHfSIKICAgICkKCiAgICAjIEJ1aWxkIHdpdGggcGFyYWxsZWwgam9icwogICAgbWFrZSAiJHtNQUtFX09QVFNbQF19IiAtaiIke0pPQlN9IiAyPiYxIHwgdGVlICIke09VVFBVVF9ESVJ9L2J1aWxkLmxvZyIgfHwgewogICAgICAgIHdhcm4gIkZpcnN0IGJ1aWxkIGF0dGVtcHQgZmFpbGVkLCByZXRyeWluZyB3aXRoIExMVk1fSUFTPTEuLi4iCiAgICAgICAgbWFrZSAiJHtNQUtFX09QVFNbQF19IiAtaiIke0pPQlN9IiBMTFZNX0lBUz0xIDI+JjEgfCB0ZWUgLWEgIiR7T1VUUFVUX0RJUn0vYnVpbGQubG9nIiB8fCB7CiAgICAgICAgICAgIGVyciAiQnVpbGQgZmFpbGVkISBDaGVjayAke09VVFBVVF9ESVJ9L2J1aWxkLmxvZyIKICAgICAgICB9CiAgICB9CgogICAgIyBDb3B5IEltYWdlIHRvIGV4cGVjdGVkIG91dHB1dCBsb2NhdGlvbgogICAgaWYgWyAtZiAib3V0L2FyY2gvYXJtNjQvYm9vdC9JbWFnZSIgXTsgdGhlbgogICAgICAgIGNwICJvdXQvYXJjaC9hcm02NC9ib290L0ltYWdlIiAiYXJjaC9hcm02NC9ib290L0ltYWdlIgogICAgICAgIGxvZyAiQnVpbGQgc3VjY2Vzc2Z1bCEiCiAgICBlbHNlCiAgICAgICAgZXJyICJObyBrZXJuZWwgSW1hZ2UgZm91bmQgaW4gb3V0L2FyY2gvYXJtNjQvYm9vdC8iCiAgICBmaQp9CgojID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQojIFN0ZXAgNjogUGFja2FnZSBvdXRwdXRzIChJbWFnZSwgT2RpbiB0YXIpCiMgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CnBhY2thZ2Vfa2VybmVsKCkgewogICAgbG9nICJQYWNrYWdpbmcgb3V0cHV0cy4uLiIKICAgIG1rZGlyIC1wICIkT1VUUFVUX0RJUiIKCiAgICBsb2NhbCBTUkNfSU1HPSIke0tFUk5FTF9ESVJ9L291dC9hcmNoL2FybTY0L2Jvb3QvSW1hZ2UiCiAgICBpZiBbICEgLWYgIiRTUkNfSU1HIiBdOyB0aGVuCiAgICAgICAgZXJyICJLZXJuZWwgSW1hZ2Ugbm90IGZvdW5kIGF0ICR7U1JDX0lNR30iCiAgICBmaQoKICAgIGNwICIkU1JDX0lNRyIgIiRPVVRQVVRfRElSL0ltYWdlIgogICAgbG9nICJLZXJuZWwgSW1hZ2U6ICQobHMgLWxoICR7T1VUUFVUX0RJUn0vSW1hZ2UgfCBhd2sgJ3twcmludCAkNX0nKSIKCiAgICAjIENyZWF0ZSBPZGluLWZsYXNoYWJsZSAudGFyLm1kNQogICAgY2QgIiRPVVRQVVRfRElSIgogICAgdGFyIC1jdmYgIktlcm5lbFNVX0EwNF9ib290LnRhciIgIkltYWdlIiAyPi9kZXYvbnVsbAogICAgCiAgICBpZiBjb21tYW5kIC12IG1kNXN1bSAmPi9kZXYvbnVsbDsgdGhlbgogICAgICAgIG1kNXN1bSAiS2VybmVsU1VfQTA0X2Jvb3QudGFyIiB8IGN1dCAtZCcgJyAtZjEgfCB0ciAtZCAnXG4nID4+ICJLZXJuZWxTVV9B recordsF_bootLnRhciIKICAgICAgICBtdiAiS2VybmVsU1VfQTA0X2Jvb3QudGFyIiAiS2VybmVsU1VfQTA0X2Jvb3QudGFyLm1kNSIKICAgICAgICBsb2cgIkNyZWF0ZWQ6IEtlcm5lbFNVX0EwNF9ib290LnRhci5tZDUgKCQobHMgLWxoIEtlcm5lbFNVX0EwNF9ib290LnRhci5tZDUgfCBhd2sgJ3twcmludCAkNX0nKSkiCiAgICBmaQoKICAgIGxvZyAiQWxsIG91dHB1dHMgaW46ICRPVVRQVVRfRElSIgogICAgbHMgLWxoICIkT1VUUFVUX0RJUi8iIHwgZ3JlcCAtdiBidWlsZC5sb2cKfQoKIyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KIyBNYWluCiMgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09Cm1haW4oKSB7CiAgICBta2RpciAtcCAiJE9VVFBVVF9ESVIiCgogICAgbG9nICI9PT0gS2VybmVsU1UgKyBTVVNGUyBCdWlsZGVyIGZvciBTTS1BMDQ1RiA9PT0iCiAgICBsb2cgIktlcm5lbDogNC4xOS4xOTEgfCBTVVNGUzogZW5hYmxlZCB8IEFyY2g6IGFybTY0IgogICAgZWNobyAiIgoKICAgIGRvd25sb2FkX2tlcm5lbF9zb3VyY2UKICAgIHNldHVwX3Rvb2xjaGFpbnMKICAgIGludGVncmF0ZV9zdXNmcwogICAgY29uZmlndXJlX2tlcm5lbAogICAgYnVpbGRfa2VybmVsCiAgICBwYWNrYWdlX2tlcm5lbAoKICAgIGVjaG8gIiIKICAgIGxvZyAiPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSIKICAgIGxvZyAgIkJVSUxEIENPTVBMRVRFIgogICAgbG9nICI9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSIKICAgIGVjaG8gIiIKICAgIGxvZyAiT3V0cHV0OiAke09VVFBVVF9ESVJ9L0tlcm5lbFNVX0EwNF9ib290LnRhci5tZDUiCiAgICBlY2hvICIiCiAgICBsb2cgIlRvIGZsYXNoIHZpYSBPZGluOiIKICAgIGxvZyAiICAxLiBCb290IGRldmljZSBpbnRvIERvd25sb2FkIE1vZGUiCiAgICBsb2cgIiAgICAgKFZvbCBEb3duICsgVm9sIFVwLCBjb25uZWN0IFVTQikiCiAgICBsb2cgIiAgMi4gT3BlbiBPZGluIG9uIFdpbmRvd3MiCiAgICBsb2cgIiAgMy4gUGxhY2UgS2VybmVsU1VfQTA0X2Jvb3QudGFyLm1kNSBpbiBBUCBzbG90IgogICAgbG9nICIgIDQuIEVuc3VyZSBvbmx5ICdBdXRvIFJlYm9vdCcgKyAnRi4gUmVzZXQgVGltZScgY2hlY2tlZCIKICAgIGxvZyAiICA1LiBDbGljayBTdGFydCIKICAgIGVjaG8gIiIKICAgIGxvZyAiQWZ0ZXIgYm9vdDoiCiAgICBsb2cgICIgIEluc3RhbGwgS2VybmVsU1UgQVBLIOKGkiBncmFudCByb290IOKGkiBlbmFibGUgJ0hpZGUnIHBlciBhcHAiCiAgICBsb2cgICIgIE9wdGlvbmFsbHkgaW5zdGFsbCBaeWdpc2sgQXNzaXN0YW50IG1vZHVsZSIKICAgIGVjaG8gIiIKfQoKbWFpbiAiJEAiCg==
+#!/bin/bash
+set -euopipefail
+
+# ==============================================================================
+# KernelSU + SUSFS Builder for Samsung Galaxy A04 (SM-A045F)
+# Based on: rsuntk-oss/android_kernel_samsung_a04m (mt6765)
+# Kernel base: 4.19.191 | Clang: r383902b (12.0.5)
+# SUSFS: simonpunk/susfs4ksu (kernel-4.19 branch)
+# ==============================================================================
+
+WORK_DIR="$(pwd)"
+KERNEL_DIR="${WORK_DIR}/kernel"
+OUTPUT_DIR="${WORK_DIR}/output"
+TOOLCHAIN_DIR="${WORK_DIR}/toolchains"
+SUSFS_DIR="${WORK_DIR}/susfs"
+JOBS=$(nproc --all 2>/dev/null || echo 4)
+
+RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'; NC='\033[0m'
+log()  { echo -e "${GREEN}[+]${NC} $1"; }
+warn() { echo -e "${YELLOW}[!]${NC} $1"; }
+err()  { echo -e "${RED}[x]${NC} $1"; exit 1; }
+
+# Helper to URL-encode paths for GitLab API
+encoded_src() {
+  local src="$1"
+  local out=""
+  local ch
+  local i=0
+  while [ $i -lt ${#src} ]; do
+    ch=$(printf '%s' "$src" | cut -c$((i+1)))
+    case "$ch" in
+      [a-zA-Z0-9]) out="${out}${ch}" ;;
+      *) out="${out}$(printf '%%%02X' "'${ch}")" ;;
+    esac
+    i=$((i+1))
+  done
+  printf '%s' "$out"
+}
+
+# ==============================================================================
+# Step 1: Download kernel source
+# ==============================================================================
+download_kernel_source() {
+    if [ -f "$KERNEL_DIR/Makefile" ]; then
+        log "Kernel source already exists at $KERNEL_DIR"
+        return
+    fi
+    log "Cloning kernel source (rsuntk-oss/android_kernel_samsung_a04m)..."
+    mkdir -p "$KERNEL_DIR"
+    git clone --depth=1 -b latest-B \
+        https://github.com/rsuntk-oss/android_kernel_samsung_a04m.git \
+        "$KERNEL_DIR" 2>&1 || err "Failed to clone kernel source"
+    log "Source cloned."
+}
+
+# ==============================================================================
+# Step 2: Setup toolchains (clang + GCC 4.9)
+# ==============================================================================
+setup_toolchains() {
+    log "Setting up toolchains..."
+    mkdir -p "$TOOLCHAIN_DIR"
+    cd "$TOOLCHAIN_DIR"
+
+    # Use mirrors from ravindu644/Android-Kernel-Tutorials releases
+    # These are exact AOSP clang-r383902b and aarch64-linux-android-4.9 tarballs
+    local MIRROR_BASE=https://github.com/ravindu644/Android-Kernel-Tutorials/releases/download/toolchains
+
+    # --- Clang ---
+    if [ ! -f "clang-r383902/bin/clang" ]; then
+        log "Downloading clang-r383902b (Clang 12.0.5)..."
+        mkdir -p clang-r383902
+        curl -L -o clang.tar.gz --connect-timeout 30 --retry 3 \
+            "${MIRROR_BASE}/clang-r383902b.tar.gz" || {
+            warn "Mirror failed, trying ravi's alternative..."
+            curl -L -o clang.tar.gz --connect-timeout 30 --retry 3 \
+                "${MIRROR_BASE}/clang-r383902.tar.gz" || {
+                err "Failed to download clang toolchain from all sources."
+            }
+        }
+        tar -xzf clang.tar.gz -C clang-r383902 2>/dev/null || err "Failed to extract clang"
+        rm -f clang.tar.gz
+    fi
+
+    # --- GCC 4.9 aarch64 ---
+    if [ ! -f "aarch64-linux-android-4.9/bin/aarch64-linux-androidkernel-ld" ]; then
+        local MIRROR_BASE="https://github.com/ravindu644/Android-Kernel-Tutorials/releases/download/toolchains"
+        log "Downloading GCC 4.9 (aarch64-linux-android)..."
+        curl -L -o gcc.tar.gz --connect-timeout 30 --retry 3 \
+            "${MIRROR_BASE}/aarch64-linux-android-4.9.tar.gz" || {
+            warn "Standard GCC tarball failed, trying Linux-5.4 variant..."
+            curl -L -o gcc.tar.gz --connect-timeout 30 --retry 3 \
+                "${MIRROR_BASE}/aarch64-linux-android-4.9-Linux-5.4.tar.gz" || {
+                err "Failed to download GCC toolchain."
+            }
+        }
+
+        # Tarball has internal path: gcc/linux-x86/aarch64/aarch64-linux-android-4.9/...
+        mkdir -p gcc_temp
+        tar -xzf gcc.tar.gz -C gcc_temp 2>/dev/null || err "Failed to extract GCC"
+        rm -f gcc.tar.gz
+
+        # Find actual bin dir and relocate
+        local GCC_BIN_DIR=$(find gcc_temp -type d -name "bin" -path "*/aarch64-linux-android-4.9/bin" | head -1)
+        if [ -z "$GCC_BIN_DIR" ]; then
+            err "Could not find toolchain bin dir: $(find gcc_temp -type d -maxdepth 6 | head -10)"
+        fi
+        mkdir -p aarch64-linux-android-4.9
+        cp -r "$(dirname "$GCC_BIN_DIR")"/* aarch64-linux-android-4.9/
+        rm -rf gcc_temp
+
+        # Create androidkernel- symlinks (kernel expects this prefix)
+        cd aarch64-linux-android-4.9/bin
+        for f in aarch64-linux-android-*; do
+            if [ -f "$f" ] && [ ! -e "${f/android-/androidkernel-}" ]; then
+                ln -sf "$f" "${f/android-/androidkernel-}"
+            fi
+        done
+        cd ../..
+        log "Created aarch64-linux-androidkernel-* symlinks"
+    fi
+
+    log "Toolchains ready."
+    echo "  Clang: $(clang-r383902/bin/clang --version 2>&1 | head -1)"
+    echo "  GCC prefix: $(ls aarch64-linux-android-4.9/bin/aarch64-linux-androidkernel-ld 2>/dev/null && echo 'found' || echo 'missing')"
+}
+
+# ==============================================================================
+# Step 3: Integrate SUSFS + KernelSU (susfs-rksu-master)
+# ==============================================================================
+integrate_susfs() {
+    log "=== Integrating SUSFS + KernelSU ==="
+    cd "$KERNEL_DIR"
+
+    # Step 3a: Download SUSFS patches from GitLab
+    log "Downloading SUSFS 4.19 patches..."
+    mkdir -p "$SUSFS_DIR"
+    cd "$SUSFS_DIR"
+
+    local GITLAB_API="https://gitlab.com/api/v4/projects/simonpunk%2Fsusfs4ksu/repository"
+    local SUSFS_REF="kernel-4.19"
+
+    # Download main patch file
+    curl -L --connect-timeout 30 --retry 3 \
+        "${GITLAB_API}/files/kernel_patches%2F50_add_susfs_in_kernel-4.19.patch/raw?ref=${SUSFS_REF}" \
+        -o "50_add_susfs_in_kernel-4.19.patch" || warn "Failed to download main SUSFS patch"
+
+    # Download individual source files (for direct placement if patch fails)
+    local SUSFS_FILES=(
+        "kernel_patches/fs/susfs.c:fs/susfs.c"
+        "kernel_patches/fs/sus_su.c:fs/sus_su.c"
+        "kernel_patches/include/linux/susfs.h:include/linux/susfs.h"
+        "kernel_patches/include/linux/susfs_def.h:include/linux/susfs_def.h"
+    )
+    for entry in "${SUSFS_FILES[@]}"; do
+        local src="${entry%%:*}"
+        local dst="${entry#*:}"
+        local dir=$(dirname "$dst")
+        mkdir -p "$dir"
+        # GitLab API v4 requires file paths to be URL-encoded
+        local encoded=$(encoded_src "$src")
+        curl -L --connect-timeout 30 --retry 3 \
+            "${GITLAB_API}/files/${encoded}/raw?ref=${SUSFS_REF}" \
+            -o "$dst" || warn "Failed to download $dst"
+    done
+
+    # Download KernelSU/ directory from SUSFS
+    log "Downloading SUSFS Integration files..."
+    curl -L --connect-timeout 30 --retry 3 \
+        "${GITLAB_API}/files/kernel_patches%2FKernelSU%2Fsucompat.c/raw?ref=${SUSFS_REF}" \
+        -o "KernelSU/sucompat.c" 2>/dev/null || true
+
+    cd "$KERNEL_DIR"
+
+    # Step 3b: Apply SUSFS kernel patch
+    if [ -f "${SUSFS_DIR}/50_add_susfs_in_kernel-4.19.patch" ]; then
+        log "Applying SUSFS kernel patch (fuzz=3, tolerant)..."
+        cd "$KERNEL_DIR"
+        
+        # Try applying with patch. Use --forward to skip already-applied hunks.
+        # --fuzz=3 tolerates up to 3 lines of context difference
+        # --no-backup-if-mismatch avoids .orig files
+        # Force exit code to 0; we track rejects separately
+        patch -p1 --forward --fuzz=3 --no-backup-if-mismatch \
+            < "${SUSFS_DIR}/50_add_susfs_in_kernel-4.19.patch" 2>&1 || true
+        
+        # Check for rejects
+        local REJECTS=$(find . -name "*.rej" 2>/dev/null | wc -l)
+        if [ $REJECTS -gt 0 ]; then
+            warn "SUSFS patch had ${REJECTS} rejected hunk(s) in:"
+            find . -name "*.rej" 2>/dev/null | while read rej; do
+                warn "  ${rej#./}"
+            done
+            log "Will manually fix critical rejections..."
+        else
+            log "SUSFS patch applied cleanly!"
+        fi
+    fi
+
+    # Step 3c: Copy SUSFS source files directly to kernel tree
+    # These are the core SUSFS files needed regardless of patch success
+    log "Copying SUSFS source files to kernel tree..."
+    
+    # Copy susfs.c and sus_su.c to fs/
+    if [ -f "${SUSFS_DIR}/fs/susfs.c" ]; then
+        cp "${SUSFS_DIR}/fs/susfs.c" "fs/susfs.c"
+        chmod 644 "fs/susfs.c"
+    fi
+    if [ -f "${SUSFS_DIR}/fs/sus_su.c" ]; then
+        cp "${SUSFS_DIR}/fs/sus_su.c" "fs/sus_su.c"
+        chmod 644 "fs/sus_su.c"
+    fi
+
+    # Copy headers
+    if [ -f "${SUSFS_DIR}/include/linux/susfs.h" ]; then
+        cp "${SUSFS_DIR}/include/linux/susfs.h" "include/linux/susfs.h"
+        chmod 644 "include/linux/susfs.h"
+    fi
+    if [ -f "${SUSFS_DIR}/include/linux/susfs_def.h" ]; then
+        cp "${SUSFS_DIR}/include/linux/susfs_def.h" "include/linux/susfs_def.h"
+        chmod 644 "include/linux/susfs_def.h"
+    fi
+
+    # Step 3d: Manually apply essential SUSFS changes to fs/Makefile
+    # (This is the most critical one that's unlikely to conflict)
+    log "Ensuring fs/Makefile has SUSFS entry..."
+    if ! grep -q "susfs.o" "fs/Makefile"; then
+        # Add after the main obj-y list, before the BLOCK check
+        sed -i '/^obj-y :=.*nsfs.o/a obj-$(CONFIG_KSU_SUSFS) += susfs.o' "fs/Makefile" 2>/dev/null || {
+            warn "Could not auto-add SUSFS to fs/Makefile; manual check needed."
+        }
+    fi
+
+    # Step 3e: Integrate KernelSU using susfs-rksu-master branch
+    log "Integrating KernelSU (susfs-rksu-master branch)..."
+    cd "$KERNEL_DIR"
+
+    # Backup and replace mtk connectivity drivers (needed for WiFi after rebuild)
+    if [ -d "drivers/misc/mediatek/connectivity" ]; then
+        log "Replacing mtk connectivity module (WiFi fix)..."
+        rm -rf drivers/misc/mediatek/connectivity
+        git clone --depth=1 https://github.com/rsuntkOrgs/mtk_connectivity_module.git \
+            -b staging-4.14 drivers/misc/mediatek/connectivity 2>/dev/null || {
+            warn "Could not clone mtk_connectivity_module; WiFi may not work."
+        }
+        rm -rf drivers/misc/mediatek/connectivity/.git
+    fi
+
+    # Use the SUSFS-aware KernelSU setup script
+    log "Running KernelSU setup (susfs-rksu-master)..."
+    curl -LSs "https://raw.githubusercontent.com/rsuntk/KernelSU/susfs-rksu-master/kernel/setup.sh" \
+        | bash -s latest 2>&1 || {
+        warn "Auto setup failed, trying manual clone..."
+        # Match setup.sh: place in KernelSU/  + symlink from drivers/kernelsu
+        if [ ! -d "KernelSU" ]; then
+            local KSU_TMP="${WORK_DIR}/ksu_tmp"
+            mkdir -p "$KSU_TMP"
+            git clone --depth=1 -b susfs-rksu-master \
+                https://github.com/rsuntk/KernelSU.git "$KSU_TMP" 2>/dev/null || {
+                err "Failed to clone KernelSU (susfs-rksu-master)!"
+            }
+            cp -r "$KSU_TMP" "$KERNEL_DIR/KernelSU"
+            ln -sf "../../KernelSU/kernel" "$KERNEL_DIR/drivers/kernelsu" 2>/dev/null || true
+            rm -rf "$KSU_TMP"
+        fi
+    }
+
+    # Verify (setup.sh puts files in KernelSU/kernel/, not kernel/)
+    if [ ! -f "KernelSU/kernel/ksu.h" ] && [ ! -L "drivers/kernelsu" ]; then
+        err "KernelSU integration failed!"
+    fi
+
+    log "SUSFS + KernelSU Integration complete."
+}
+
+# ==============================================================================
+# Step 4: Configure kernel (a04_defconfig + SUSFS + KernelSU)
+# ==============================================================================
+configure_kernel() {
+    log "Configuring kernel..."
+    cd "$KERNEL_DIR"
+
+    # Set up toolchain paths
+    export ARCH=arm64
+    export CROSS_COMPILE="${TOOLCHAIN_DIR}/aarch64-linux-android-4.9/bin/aarch64-linux-androidkernel-"
+    export CC="${TOOLCHAIN_DIR}/clang-r383902/bin/clang"
+    export CLANG_TRIPLE="aarch64-linux-gnu-"
+
+    local MAKE_OPTS=(
+        -C "$(pwd)"
+        O="$(pwd)/out"
+        KCFLAGS=-w
+        CONFIG_SECTION_MISMATCH_WARN_ONLY=y
+        ARCH=arm64
+        CC="${CC}"
+        CLANG_TRIPLE="${CLANG_TRIPLE}"
+        CROSS_COMPILE="${CROSS_COMPILE}"
+    )
+
+    # Step 4a: Generate base .config using a04_defconfig
+    log "Using a04_defconfig..."
+    make "${MAKE_OPTS[@]}" a04_defconfig || err "Defconfig failed"
+
+    # Step 4b: Enable KernelSU
+    log "Enabling KernelSU..."
+    scripts/config --file out/.config --enable CONFIG_KSU
+    scripts/config --file out/.config --enable CONFIG_KSU_MANUAL_HOOK
+
+    # Step 4c: Enable SUSFS features
+    log "Enabling SUSFS hiding features..."
+    for opt in \
+        KSU_SUSFS KSU_SUSFS_SUS_PATH \
+        KSU_SUSFS_SUS_MOUNT KSU_SUSFS_SUS_KSTAT \
+        KSU_SUSFS_OPEN_REDIRECT KSU_SUSFS_SUS_SU \
+        SPOOF_UNAME KSU_SUSFS_ENFORCE_SUSFS \
+        KSU_SUSFS_HIDE_KSU_SUSFS_SYMBOLS \
+        KSU_SUSFS_SUS_OVERLAYFS; do
+        scripts/config --file out/.config --enable "CONFIG_${opt}" 2>/dev/null || true
+    done
+
+    # Step 4d: Disable Samsung security that conflicts with KernelSU/SUSFS
+    log "Disabling Samsung security modules..."
+    for opt in \
+        SECURITY_DEFEX PROCA FIVE UH RKP_KDP \
+        SEC_RESTRICT_ROOTING SEC_RESTRICT_SETUID SEC_RESTRICT_FORK \
+        SEC_RESTRICT_ROOTING_LOG KNOX_KAP \
+        TIMA TIMA_LKMAUTH TIMA_LKM_BLOCK TIMA_LKMAUTH_CODE_PROT \
+        INTEGRITY INTEGRITY_SIGNATURE INTEGRITY_ASYMMETRIC_KEYS \
+        INTEGRITY_TRUSTED_KEYRING INTEGRITY_AUDIT DM_VERITY; do
+        scripts/config --file out/.config --disable "CONFIG_${opt}" 2>/dev/null || true
+    done
+
+    # Step 4e: SELinux permissive toggle
+    scripts/config --file out/.config --enable CONFIG_SECURITY_SELINUX_DEVELOP || true
+    scripts/config --file out/.config --disable CONFIG_SECURITY_SELINUX_ALWAYS_ENFORCE || true
+
+    # Step 4f: Low detectability settings
+    scripts/config --file out/.config --disable CONFIG_KSU_DEBUG 2>/dev/null || true
+    scripts/config --file out/.config --set-str CONFIG_LOCALVERSION "-th-v2"
+    scripts/config --file out/.config --disable CONFIG_LOCALVERSION_AUTO
+
+    # Step 4g: Olddefconfig to resolve any new dependencies
+    make "${MAKE_OPTS[@]}" olddefconfig 2>/dev/null || true
+
+    log "Kernel configured with SUSFS + low-detectability settings."
+}
+
+# ==============================================================================
+# Step 5: Build the kernel
+# ==============================================================================
+build_kernel() {
+    log "Building kernel with ${JOBS} jobs..."
+    cd "$KERNEL_DIR"
+
+    # Camouflage: set manager app to Samsung system app (e.g., firmware update)
+    local MANAGER_PKG="${KSU_MANAGER_PACKAGE:-com.wssyncmldm}"
+
+    local MAKE_OPTS=(
+        -C "$(pwd)"
+        O="$(pwd)/out"
+        KCFLAGS=-w
+        CONFIG_SECTION_MISMATCH_WARN_ONLY=y
+        ARCH=arm64
+        CC="${CC}"
+        CLANG_TRIPLE="${CLANG_TRIPLE}"
+        CROSS_COMPILE="${CROSS_COMPILE}"
+        KSU_MANAGER_PACKAGE="${MANAGER_PKG}"
+    )
+
+    # Build with parallel jobs
+    make "${MAKE_OPTS[@]}" -j"${JOBS}" 2>&1 | tee "${OUTPUT_DIR}/build.log" || {
+        warn "First build attempt failed, retrying with LLVM_IAS=1..."
+        make "${MAKE_OPTS[@]}" -j"${JOBS}" LLVM_IAS=1 2>&1 | tee -a "${OUTPUT_DIR}/build.log" || {
+            err "Build failed! Check ${OUTPUT_DIR}/build.log"
+        }
+    }
+
+    # Copy Image to expected output location
+    if [ -f "out/arch/arm64/boot/Image" ]; then
+        cp "out/arch/arm64/boot/Image" "arch/arm64/boot/Image"
+        log "Build successful!"
+    else
+        err "No kernel Image found in out/arch/arm64/boot/"
+    fi
+}
+
+# ==============================================================================
+# Step 6: Package outputs (Image, Odin tar)
+# ==============================================================================
+package_kernel() {
+    log "Packaging outputs..."
+    mkdir -p "$OUTPUT_DIR"
+
+    local SRC_IMG="${KERNEL_DIR}/out/arch/arm64/boot/Image"
+    if [ ! -f "$SRC_IMG" ]; then
+        err "Kernel Image not found at ${SRC_IMG}"
+    fi
+
+    cp "$SRC_IMG" "$OUTPUT_DIR/Image"
+    log "Kernel Image: $(ls -lh ${OUTPUT_DIR}/Image | awk '{print $5}')"
+
+    # Create Odin-flashable .tar.md5
+    cd "$OUTPUT_DIR"
+    tar -cvf "KernelSU_A04_boot.tar" "Image" 2>/dev/null
+    
+    if command -v md5sum &>/dev/null; then
+        md5sum "KernelSU_A04_boot.tar" | cut -d' ' -f1 | tr -d '\n' >> "KernelSU_A04_boot.tar"
+        mv "KernelSU_A04_boot.tar" "KernelSU_A04_boot.tar.md5"
+        log "Created: KernelSU_A04_boot.tar.md5 ($(ls -lh KernelSU_A04_boot.tar.md5 | awk '{print $5}'))"
+    fi
+
+    log "All outputs in: $OUTPUT_DIR"
+    ls -lh "$OUTPUT_DIR/" | grep -v build.log
+}
+
+# ==============================================================================
+# Main
+# ==============================================================================
+main() {
+    mkdir -p "$OUTPUT_DIR"
+
+    log "=== KernelSU + SUSFS Builder for SM-A045F ==="
+    log "Kernel: 4.19.191 | SUSFS: enabled | Arch: arm64"
+    echo ""
+
+    download_kernel_source
+    setup_toolchains
+    integrate_susfs
+    configure_kernel
+    build_kernel
+    package_kernel
+
+    echo ""
+    log "=============================================================================="
+    log  "BUILD COMPLETE"
+    log "=============================================================================="
+    echo ""
+    log "Output: ${OUTPUT_DIR}/KernelSU_A04_boot.tar.md5"
+    echo ""
+    log "To flash via Odin:"
+    log "  1. Boot device into Download Mode"
+    log "     (Vol Down + Vol Up, connect USB)"
+    log "  2. Open Odin on Windows"
+    log "  3. Place KernelSU_A04_boot.tar.md5 in AP slot"
+    log "  4. Ensure only 'Auto Reboot' + 'F. Reset Time' checked"
+    log "  5. Click Start"
+    echo ""
+    log "After boot:"
+    log "  - Install KernelSU APK -> grant root -> enable 'Hide' per app"
+    log "  - Optionally install Zygisk Assistant module"
+    echo ""
+}
+
+main "$@"

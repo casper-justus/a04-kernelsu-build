@@ -158,9 +158,10 @@ jobs:
                        "kernel_patches/include/linux/susfs_def.h:include/linux/susfs_def.h"; do
             src="${file%%:*}"
             dst="${file##*:}"
+            encoded_src=$(echo "$src" | sed 's/\//%2F/g')
             mkdir -p "$(dirname "$dst")"
             curl -L --connect-timeout 30 --retry 3 \
-              "${GITLAB_API}/files/${src}/raw?ref=${SUSFS_REF}" \
+              "${GITLAB_API}/files/${encoded_src}/raw?ref=${SUSFS_REF}" \
               -o "$dst" || echo "WARNING: Could not download $dst"
           done
 

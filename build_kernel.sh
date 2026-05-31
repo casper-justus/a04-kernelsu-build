@@ -275,8 +275,6 @@ configure_kernel() {
         CC="${CC}"
         CLANG_TRIPLE="${CLANG_TRIPLE}"
         CROSS_COMPILE="${CROSS_COMPILE}"
-        LLVM=1
-        LLVM_IAS=1
     )
 
     # Step 4a: Generate base .config using a04_defconfig
@@ -347,14 +345,12 @@ build_kernel() {
         CLANG_TRIPLE="${CLANG_TRIPLE}"
         CROSS_COMPILE="${CROSS_COMPILE}"
         KSU_MANAGER_PACKAGE="${MANAGER_PKG}"
-        LLVM=1
-        LLVM_IAS=1
     )
 
     # Build with parallel jobs
     make "${MAKE_OPTS[@]}" -j"${JOBS}" 2>&1 | tee "${OUTPUT_DIR}/build.log" || {
-        warn "Build failed with LLVM_IAS=1, retrying without..."
-        make "${MAKE_OPTS[@]}" -j"${JOBS}" LLVM_IAS= 2>&1 | tee -a "${OUTPUT_DIR}/build.log" || {
+        warn "First build attempt failed, retrying with LLVM_IAS=1..."
+        make "${MAKE_OPTS[@]}" -j"${JOBS}" LLVM_IAS=1 2>&1 | tee -a "${OUTPUT_DIR}/build.log" || {
             err "Build failed! Check ${OUTPUT_DIR}/build.log"
         }
     }

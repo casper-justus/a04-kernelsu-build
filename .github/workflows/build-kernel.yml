@@ -267,8 +267,6 @@ jobs:
             CC="${CC}"
             CLANG_TRIPLE="${CLANG_TRIPLE}"
             CROSS_COMPILE="${CROSS_COMPILE}"
-            LLVM=1
-            LLVM_IAS=1
           )
 
           echo "Using ${{ inputs.defconfig }}..."
@@ -340,14 +338,12 @@ jobs:
             CLANG_TRIPLE="${CLANG_TRIPLE}"
             CROSS_COMPILE="${CROSS_COMPILE}"
             KSU_MANAGER_PACKAGE="${MANAGER_PKG}"
-            LLVM=1
-            LLVM_IAS=1
           )
 
           echo "Building kernel with $(nproc --all) jobs..."
           make "${MAKE_OPTS[@]}" -j"$(nproc --all)" 2>&1 | tee "${{ env.OUTPUT_DIR }}/build.log" || {
-            echo "LLVM_IAS=1 failed, retrying without..."
-            make "${MAKE_OPTS[@]}" -j"$(nproc --all)" LLVM_IAS= 2>&1 | tee -a "${{ env.OUTPUT_DIR }}/build.log" || {
+            echo "First build attempt failed, retrying with LLVM_IAS=1..."
+            make "${MAKE_OPTS[@]}" -j"$(nproc --all)" LLVM_IAS=1 2>&1 | tee -a "${{ env.OUTPUT_DIR }}/build.log" || {
               echo "Build failed! Check build.log"
               exit 1
             }

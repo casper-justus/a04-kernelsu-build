@@ -90,7 +90,6 @@ jobs:
 
           # --- GCC 4.9 aarch64 (from mirror) ---
           if [ ! -f "$TOOLCHAIN_DIR/aarch64-linux-android-4.9/bin/aarch64-linux-androidkernel-ld" ]; then
-            mkdir -p "$TOOLCHAIN_DIR/aarch64-linux-android-4.9"
             echo "Downloading aarch64-linux-android-4.9..."
             curl -L -o gcc.tar.gz --connect-timeout 30 --retry 3 \
               "${MIRROR_BASE}/aarch64-linux-android-4.9.tar.gz" || {
@@ -101,8 +100,34 @@ jobs:
                 exit 1
               }
             }
-            tar -xzf gcc.tar.gz -C "$TOOLCHAIN_DIR/aarch64-linux-android-4.9"
+
+            # The tarball has internal path: gcc/linux-x86/aarch64/aarch64-linux-android-4.9/...
+            # Extract to temp, locate the actual bin dir, then relocate
+            mkdir -p "$TOOLCHAIN_DIR/gcc_temp"
+            tar -xzf gcc.tar.gz -C "$TOOLCHAIN_DIR/gcc_temp"
             rm -f gcc.tar.gz
+
+            # Find the actual bin directory
+            GCC_BIN_DIR=$(find "$TOOLCHAIN_DIR/gcc_temp" -type d -name "bin" -path "*/aarch64-linux-android-4.9/bin" | head -1)
+            if [ -z "$GCC_BIN_DIR" ]; then
+              echo "ERROR: Could not find toolchain bin directory in tarball"
+              find "$TOOLCHAIN_DIR/gcc_temp" -type d -maxdepth 6 | head -20
+              exit 1
+            fi
+
+            # Move to expected location
+            mkdir -p "$TOOLCHAIN_DIR/aarch64-linux-android-4.9"
+            cp -r "$(dirname "$GCC_BIN_DIR")"/* "$TOOLCHAIN_DIR/aarch64-linux-android-4.9/"
+            rm -rf "$TOOLCHAIN_DIR/gcc_temp"
+
+            # Create androidkernel- symlinks (kernel expects this prefix)
+            cd "$TOOLCHAIN_DIR/aarch64-linux-android-4.9/bin"
+            for f in aarch64-linux-android-*; do
+              if [ -f "$f" ] && [ ! -e "${f/android-/androidkernel-}" ]; then
+                ln -sf "$f" "${f/android-/androidkernel-}"
+              fi
+            done
+            echo "Created androidkernel- symlinks in $(pwd)"
           fi
 
           echo "Toolchains ready:"

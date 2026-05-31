@@ -66,18 +66,40 @@ setup_toolchains() {
 
     # --- GCC 4.9 aarch64 ---
     if [ ! -f "aarch64-linux-android-4.9/bin/aarch64-linux-androidkernel-ld" ]; then
+        local MIRROR_BASE="https://github.com/ravindu644/Android-Kernel-Tutorials/releases/download/toolchains"
         log "Downloading GCC 4.9 (aarch64-linux-android)..."
-        mkdir -p aarch64-linux-android-4.9
         curl -L -o gcc.tar.gz --connect-timeout 30 --retry 3 \
             "${MIRROR_BASE}/aarch64-linux-android-4.9.tar.gz" || {
-            warn "Standard GCC tarball failed, trying single variant..."
+            warn "Standard GCC tarball failed, trying Linux-5.4 variant..."
             curl -L -o gcc.tar.gz --connect-timeout 30 --retry 3 \
                 "${MIRROR_BASE}/aarch64-linux-android-4.9-Linux-5.4.tar.gz" || {
                 err "Failed to download GCC toolchain."
             }
         }
-        tar -xzf gcc.tar.gz -C aarch64-linux-android-4.9 2>/dev/null || err "Failed to extract GCC"
+
+        # Tarball has internal path: gcc/linux-x86/aarch64/aarch64-linux-android-4.9/...
+        mkdir -p gcc_temp
+        tar -xzf gcc.tar.gz -C gcc_temp 2>/dev/null || err "Failed to extract GCC"
         rm -f gcc.tar.gz
+
+        # Find actual bin dir and relocate
+        local GCC_BIN_DIR=$(find gcc_temp -type d -name "bin" -path "*/aarch64-linux-android-4.9/bin" | head -1)
+        if [ -z "$GCC_BIN_DIR" ]; then
+            err "Could not find toolchain bin dir: $(find gcc_temp -type d -maxdepth 6 | head -10)"
+        fi
+        mkdir -p aarch64-linux-android-4.9
+        cp -r "$(dirname "$GCC_BIN_DIR")"/* aarch64-linux-android-4.9/
+        rm -rf gcc_temp
+
+        # Create androidkernel- symlinks (kernel expects this prefix)
+        cd aarch64-linux-android-4.9/bin
+        for f in aarch64-linux-android-*; do
+            if [ -f "$f" ] && [ ! -e "${f/android-/androidkernel-}" ]; then
+                ln -sf "$f" "${f/android-/androidkernel-}"
+            fi
+        done
+        cd ../..
+        log "Created aarch64-linux-androidkernel-* symlinks"
     fi
 
     log "Toolchains ready."

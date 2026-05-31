@@ -231,23 +231,23 @@ integrate_susfs() {
     curl -LSs "https://raw.githubusercontent.com/rsuntk/KernelSU/susfs-rksu-master/kernel/setup.sh" \
         | bash -s susfs-rksu-master 2>&1 || {
         warn "Auto setup failed, trying manual clone..."
-        # Manual: clone just the kernel/ directory files
-        if [ ! -d "kernel/ksu.h" ]; then
+        # Match setup.sh: place in KernelSU/ + symlink from drivers/kernelsu
+        if [ ! -d "KernelSU" ]; then
             local KSU_TMP="${WORK_DIR}/ksu_tmp"
             mkdir -p "$KSU_TMP"
             git clone --depth=1 -b susfs-rksu-master \
                 https://github.com/rsuntk/KernelSU.git "$KSU_TMP" 2>/dev/null || {
                 err "Failed to clone KernelSU (susfs-rksu-master)!"
             }
-            # Copy kernel/ files over
-            cp -r "$KSU_TMP/kernel/"* "$KERNEL_DIR/kernel/" 2>/dev/null || true
+            cp -r "$KSU_TMP" "$KERNEL_DIR/KernelSU"
+            ln -sf "../../KernelSU/kernel" "$KERNEL_DIR/drivers/kernelsu" 2>/dev/null || true
             rm -rf "$KSU_TMP"
         fi
     }
 
-    # Verify KSU files exist
-    if [ ! -f "kernel/ksu.h" ]; then
-        err "KernelSU integration failed - kernel/ksu.h not found!"
+    # Verify (setup.sh puts files in KernelSU/kernel/, not kernel/)
+    if [ ! -f "KernelSU/kernel/ksu.h" ] && [ ! -L "drivers/kernelsu" ]; then
+        err "KernelSU integration failed!"
     fi
 
     log "SUSFS + KernelSU integration complete."

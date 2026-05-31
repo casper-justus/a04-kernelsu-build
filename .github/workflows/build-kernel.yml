@@ -233,16 +233,22 @@ jobs:
               echo "ERROR: Failed to clone KernelSU"
               exit 1
             }
-            cp -r "$KSU_TMP/kernel/"* "$KERNEL_DIR/kernel/" 2>/dev/null || true
+            # Match what setup.sh does: place in KernelSU/ and symlink from drivers/kernelsu
+            cp -r "$KSU_TMP" "$KERNEL_DIR/KernelSU"
+            ln -sf "../../KernelSU/kernel" "$KERNEL_DIR/drivers/kernelsu" 2>/dev/null || true
             rm -rf "$KSU_TMP"
           }
 
-          # Verify
-          if [ ! -f "kernel/ksu.h" ]; then
+          # Verify (setup.sh puts files in KernelSU/kernel/, not kernel/)
+          if [ ! -f "KernelSU/kernel/ksu.h" ] && [ ! -L "drivers/kernelsu" ]; then
             echo "ERROR: KernelSU integration failed!"
+            ls -la "KernelSU/kernel/ksu.h" 2>/dev/null || echo "  KernelSU/kernel/ksu.h not found"
+            ls -la "drivers/kernelsu" 2>/dev/null || echo "  drivers/kernelsu symlink not found"
             exit 1
           fi
           echo "SUSFS + KernelSU integration complete."
+          echo "  KernelSU: $(ls KernelSU/kernel/ksu.h 2>/dev/null || echo 'via symlink')"
+          echo "  Drivers symlink: $(readlink -f drivers/kernelsu 2>/dev/null || echo 'N/A')"
 
       - name: Configure kernel
         run: |

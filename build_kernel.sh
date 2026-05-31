@@ -180,14 +180,15 @@ configure_kernel() {
     scripts/config --file out/.config --enable CONFIG_SECURITY_SELINUX_DEVELOP || true
     scripts/config --file out/.config --disable CONFIG_SECURITY_SELINUX_ALWAYS_ENFORCE || true
 
-    # Set kernel local version
-    scripts/config --file out/.config --set-str CONFIG_LOCALVERSION "-KernelSU"
-    scripts/config --file out/.config --enable CONFIG_LOCALVERSION_AUTO
+    # Hiding / low detectability settings
+    # Disable KSU debug (no log spam, harder to detect)
+    scripts/config --file out/.config --disable CONFIG_KSU_DEBUG 2>/dev/null || true
 
-    # Regenerate to apply changes
-    make "${MAKE_OPTS[@]}" olddefconfig 2>/dev/null || true
+    # Change kernel version string to blend in (avoid "-KernelSU" pattern)
+    scripts/config --file out/.config --set-str CONFIG_LOCALVERSION "-th-v2"
+    scripts/config --file out/.config --disable CONFIG_LOCALVERSION_AUTO
 
-    log "Kernel configured."
+    log "Kernel configured with low-detectability settings."
 }
 
 # ============================================================
@@ -196,6 +197,9 @@ configure_kernel() {
 build_kernel() {
     log "Building kernel with ${JOBS} jobs..."
     cd "$KERNEL_DIR"
+
+    # Camouflage: set manager app to Samsung system app
+    local MANAGER_PKG="${KSU_MANAGER_PACKAGE:-com.wssyncmldm}"
 
     local MAKE_OPTS=(
         -C "$(pwd)"
@@ -206,6 +210,7 @@ build_kernel() {
         CC="${CC}"
         CLANG_TRIPLE="${CLANG_TRIPLE}"
         CROSS_COMPILE="${CROSS_COMPILE}"
+        KSU_MANAGER_PACKAGE="${MANAGER_PKG}"
         LLVM=1
         LLVM_IAS=1
     )

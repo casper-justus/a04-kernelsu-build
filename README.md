@@ -42,6 +42,24 @@ Build a custom Linux kernel with KernelSU root for the Samsung Galaxy A04.
 1. Download the KernelSU APK from [rsuntk/KernelSU releases](https://github.com/rsuntk/KernelSU/releases)
 2. Install and grant root permissions via the app
 
+## 🔒 Low Detectability
+
+This build includes several hiding features baked into the kernel:
+
+| Setting | Value | Why |
+|---|---|---|
+| Module name | Built-in (`CONFIG_KSU=y`) | Nothing appears in `/proc/modules` |
+| Kernel version | `-th-v2` | Blends with stock `TragicHorizon` style |
+| Manager package | `com.wssyncmldm` | Masquerades as Samsung FW update app |
+| KSU debug | OFF | No suspicious kernel log spam |
+
+### After flashing, also do:
+1. **Open KernelSU Manager** → **Settings** → enable **"Hide"** for all user apps
+2. **Enable Allowlist mode** — only authorized apps get root
+3. Install **Zygisk Assistant** or **Zygisk Next** module for process-level hiding
+4. Rename the KernelSU APK to something innocuous (e.g. `Settings.apk`)
+5. For banking apps: use KernelSU's per-app "Hide" toggle
+
 ## ⚠️ Warnings
 - Flashing a custom kernel **voids your warranty** and may trip Knox
 - Ensure your device is **SM-A045F** (Galaxy A04) before flashing

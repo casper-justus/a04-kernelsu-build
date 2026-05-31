@@ -21,6 +21,16 @@ on:
         required: true
         default: 'main'
         type: string
+      manager_package:
+        description: 'Manager app package name (for hiding)'
+        required: true
+        default: 'com.wssyncmldm'
+        type: string
+      kernel_version_suffix:
+        description: 'Kernel version suffix (use empty for none)'
+        required: false
+        default: '-th-v2'
+        type: string
 
 concurrency:
   group: kernel-build-${{ github.ref_name }}
@@ -155,9 +165,20 @@ jobs:
           scripts/config --file out/.config --enable CONFIG_SECURITY_SELINUX_DEVELOP 2>/dev/null || true
           scripts/config --file out/.config --disable CONFIG_SECURITY_SELINUX_ALWAYS_ENFORCE 2>/dev/null || true
 
-          # Set kernel local version
-          scripts/config --file out/.config --set-str CONFIG_LOCALVERSION "-KernelSU" 2>/dev/null || true
-          scripts/config --file out/.config --enable CONFIG_LOCALVERSION_AUTO 2>/dev/null || true
+          # Hiding / low detectability settings
+          # Disable KSU debug (no log spam, harder to detect)
+          scripts/config --file out/.config --disable CONFIG_KSU_DEBUG 2>/dev/null || true
+          scripts/config --file out/.config --set-val CONFIG_KSU_DEBUG n 2>/dev/null || true
+
+          # Change kernel version string to blend in (avoid "-KernelSU" pattern)
+          # Use same style as the stock custom kernel ("TragicHorizon")
+          KERNEL_SUFFIX="${{ inputs.kernel_version_suffix }}"
+          if [ -n "$KERNEL_SUFFIX" ]; then
+            scripts/config --file out/.config --set-str CONFIG_LOCALVERSION "$KERNEL_SUFFIX" 2>/dev/null || true
+          else
+            scripts/config --file out/.config --set-str CONFIG_LOCALVERSION "" 2>/dev/null || true
+          fi
+          scripts/config --file out/.config --disable CONFIG_LOCALVERSION_AUTO 2>/dev/null || true
 
           make "${MAKE_OPTS[@]}" olddefconfig 2>/dev/null || true
 
@@ -170,6 +191,11 @@ jobs:
           export CC="$TOOLCHAIN_DIR/clang-r383902/bin/clang"
           export CLANG_TRIPLE="aarch64-linux-gnu-"
 
+          # Pass manager package name for KSU camouflage
+          # KSU_MANAGER_PACKAGE sets the expected manager app package
+          # Using Samsung system app name to blend in
+          MANAGER_PKG="${{ inputs.manager_package }}"
+
           MAKE_OPTS=(
             -C "$(pwd)"
             O="$(pwd)/out"
@@ -178,6 +204,7 @@ jobs:
             CC="${CC}"
             CLANG_TRIPLE="${CLANG_TRIPLE}"
             CROSS_COMPILE="${CROSS_COMPILE}"
+            KSU_MANAGER_PACKAGE="${MANAGER_PKG}"
             LLVM=1
             LLVM_IAS=1
           )
